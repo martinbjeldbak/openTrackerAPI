@@ -31,6 +31,10 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'cancancan'
 
+gem 'omniauth-steam'
+
+gem 'figaro'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
