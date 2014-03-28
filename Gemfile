@@ -29,7 +29,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
-gem 'cancancan'
+gem 'cancancan', '~> 1.7'
 
 gem 'omniauth-steam'
 
@@ -38,6 +38,11 @@ gem 'figaro'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'factory_girl'
 end
 
 # Use ActiveModel has_secure_password
