@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  check_authorization unless: :devise_controller?
+  skip_authorization_check only: [:index]
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery #with: :exception
@@ -7,7 +9,7 @@ class ApplicationController < ActionController::Base
   def index
   end
 
-  #def configure_permitted_parameters
-    #devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
-  #end
+  rescue_from CanCan::AccessDenied do |ex|
+    redirect_to root_url, alert: ex.message
+  end
 end
