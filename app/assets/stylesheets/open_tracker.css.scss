@@ -1,0 +1,26 @@
+div {
+  display: block;
+}
+
+a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+footer {
+  position: relative;
+  margin-top: 40px;
+  padding {
+    bottom: 40px;
+    top: 40px;
+  }
+  font-size: 12px;
+  line-height: 1.5;
+  color: #777;
+  border-top: 1px solid #eee;
+
+  li {
+    display: inline-block;
+    line-height: 16pt;
+  }
+}
