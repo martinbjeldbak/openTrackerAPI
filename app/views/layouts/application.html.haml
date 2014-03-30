@@ -7,10 +7,10 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    = nav_bar brand: 'OpenTracker', brand_link: root_path, responsive: true do
+    = nav_bar brand: 'OpenTracker', brand_link: root_path do
       = menu_group pull: :right do
         - if current_user
-          = menu_item current_user.name, user_path(current_user)
+          = menu_item  image_tag(current_user.image, class: 'profile-picture') + current_user.name, user_path(current_user)
           = menu_item 'Log out', destroy_user_session_path, method: :delete
         - else
           = menu_item image_tag('http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_small.png'), user_omniauth_authorize_path(:steam)

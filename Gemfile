@@ -22,7 +22,7 @@ gem 'coffee-rails', '~> 4.0.0'
 #gem 'less-rails'
 
 gem 'bootstrap-sass', '~> 3.1.1'
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: 'bootstrap3'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
