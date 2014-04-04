@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:steam]
 
+  has_many :sessions
+
   def email_required?
     provider.blank?
   end
