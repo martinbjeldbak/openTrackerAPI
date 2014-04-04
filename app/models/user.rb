@@ -12,9 +12,6 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_steam_oauth(auth)
-    logger.debug("ALL: " + auth.info.inspect.to_s)
-    logger.debug("INFO: " + auth.info.inspect.to_s)
-
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
