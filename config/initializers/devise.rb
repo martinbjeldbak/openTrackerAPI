@@ -4,13 +4,13 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = 'ee96d7f630e2f8604400445b0f91a39042cb3b30014e1b21305ea461aea9da337c80dd733a07bffb96903e0ee8d039da3eb646d99ee2c6634c9c305acc828338'
+  #config.secret_key = Rails.application.secrets.devise_secret_key
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'no-reply@opentracker.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -231,9 +231,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :steam, ENV['STEAM_WEB_API_KEY']
-
-
+  config.omniauth :steam, Rails.application.secrets.steam_api_key
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
