@@ -10,7 +10,7 @@ development:
   pool: 5
   timeout: 5000
   username: opentracker
-  password:
+  password: <%= Rails.application.secrets.db_password %>
 
 test:
   adapter: postgresql
@@ -19,7 +19,7 @@ test:
   pool: 5
   timeout: 5000
   username: opentracker
-  password:
+  password: <%= Rails.application.secrets.db_password %>
 
 production:
   adapter: sqlite3
