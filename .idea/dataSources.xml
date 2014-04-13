@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3737611121">
+    <data-source source="LOCAL" name="Rails openTrackerAPI: development" uuid="4b298d70-26f6-46e9-a623-6c1e0dcdf06b">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:opentracker_development</jdbc-url>
+      <user-name>opentracker</user-name>
+      <user-password>df96df8fdf97df8adff8dfcbdfc3dfc6dfd9df84dfcbdfdadfdadfc6dfc3dfc9dfcbdfdedfc5dfc4df84dfd9dfcfdfc9dfd8dfcfdfdedfd9df84dfcedfc8dff5dfdadfcbdfd9dfd9dfdddfc5dfd8dfcedf8adf8fdf94</user-password>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/postgresql-9.2-1002.jdbc4.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="Rails openTrackerAPI: test" uuid="f5b0d4cd-37ac-4922-8746-3066dade52e6">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:opentracker_test</jdbc-url>
+      <user-name>opentracker</user-name>
+      <user-password>df96df8fdf97df8adff8dfcbdfc3dfc6dfd9df84dfcbdfdadfdadfc6dfc3dfc9dfcbdfdedfc5dfc4df84dfd9dfcfdfc9dfd8dfcfdfdedfd9df84dfcedfc8dff5dfdadfcbdfd9dfd9dfdddfc5dfd8dfcedf8adf8fdf94</user-password>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/postgresql-9.2-1002.jdbc4.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+  </component>
+</project>
+
