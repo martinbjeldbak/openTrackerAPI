@@ -5,7 +5,6 @@ class CreateSessions < ActiveRecord::Migration
       t.datetime :ended_at
       t.string :version
       t.belongs_to :user
-      t.belongs_to :api_key
 
       t.timestamps
     end
