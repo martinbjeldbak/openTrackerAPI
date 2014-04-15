@@ -52,6 +52,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    database_cleaner (1.2.0)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -63,6 +64,9 @@ GEM
     execjs (2.0.2)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
+    factory_girl_rails (4.4.1)
+      factory_girl (~> 4.4.0)
+      railties (>= 3.0.0)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -87,6 +91,8 @@ GEM
     mini_portile (0.5.3)
     minitest (5.3.2)
     multi_json (1.9.2)
+    nokogiri (1.6.2.rc2)
+      mini_portile (~> 0.5.2)
     nokogiri (1.6.2.rc2-x64-mingw32)
       mini_portile (~> 0.5.2)
     omniauth (1.2.1)
@@ -191,8 +197,9 @@ DEPENDENCIES
   bootstrap-sass (~> 3.1.1)
   cancancan (~> 1.7)
   coffee-rails (~> 4.0.0)
+  database_cleaner
   devise
-  factory_girl
+  factory_girl_rails (~> 4.0)
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
