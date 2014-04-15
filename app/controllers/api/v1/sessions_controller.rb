@@ -28,19 +28,23 @@ module Api
       end
 
       def create
-        user = User.find_by_uid(session_params[:steam_id])
+        user = User.find_by_id(session_params[:user_id])
+        #user = User.find_by_uid(session_params[:user])
 
-        respond_with({ errors: 'Could not find user' }, status: 404, location: 'nil') if user.nil?
+        if user
+          @session = user.sessions.build(user_id: user.id, started_at: Time.now, version: session_params[:version])
 
-        @session = user.sessions.build(user_id: user.id, started_at: Time.now, version: session_params[:version])
-
-        respond_with @session, status: 200, location: 'nil' if @session.save
+          respond_with @session, status: 200, location: 'nil' if @session.save
+        else
+          respond_with({ errors: 'Could not find user' }, status: 404, location: 'nil')
+        end
       end
 
       private
 
       def session_params
-        params.require(:session).permit(:steam_id, :version, :user_agent)
+        #params.require(:session).permit(:version, user: :uid )
+        params.require(:session).permit(:user_id, :version)
       end
     end
   end
