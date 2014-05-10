@@ -28,11 +28,10 @@ module Api
       end
 
       def create
-        user = User.find_by_id(session_params[:user_id])
-        #user = User.find_by_uid(session_params[:user])
+        user = User.find_by_id session_params[:user_id]
 
         if user
-          @session = user.sessions.build(user_id: user.id, started_at: Time.now, version: session_params[:version])
+          @session = user.sessions.build(user: user, started_at: Time.now, version: session_params[:version])
 
           respond_with @session, status: 200, location: 'nil' if @session.save
         else
@@ -43,8 +42,7 @@ module Api
       private
 
       def session_params
-        #params.require(:session).permit(:version, user: :uid )
-        params.require(:session).permit(:user_id, :version)
+        params.require(:session).permit(:version, :user_id)
       end
     end
   end

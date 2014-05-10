@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe 'Sessions API' do
+
   describe 'GET /api/v1/sessions' do
     it 'returns all the sessions' do
       FactoryGirl.create_list :session, 10
@@ -52,8 +53,7 @@ describe 'Sessions API' do
         'Content-Type' => 'application/json'
       }
 
-      #post '/api/v1/sessions', {session: {user: { uid: u.uid }, version: '0.2'}}.to_json, request_headers
-      post '/api/v1/sessions', {session: {user_id: u.id, version: '0.2'}}.to_json, request_headers
+      post '/api/v1/sessions', { session: { user_id: u.id, version: '0.2' } }.to_json, request_headers
 
       expect(response).to be_success
       expect(json['key']).to eq u.sessions.first.key

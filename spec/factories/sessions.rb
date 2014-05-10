@@ -11,5 +11,9 @@ FactoryGirl.define do
       started_at { 1.hour.ago }
       ended_at { Time.now }
     end
+
+    trait :has_key do
+      key { Key.create! }
+    end
   end
 end
