@@ -21,7 +21,11 @@ describe 'Sessions API' do
 
       expect(response).to be_success
 
-      expect(json['key']).to eq s.key
+      expect(json['started_at']).to eq s.started_at
+      expect(json['version']).to eq s.version
+      expect(json['user_id']).to eq s.user.id
+      expect(json['id']).to eq s.id
+      expect(json['key']['key']).to eq s.key.key
     end
   end
 
@@ -56,7 +60,7 @@ describe 'Sessions API' do
       post '/api/v1/sessions', { session: { user_id: u.id, version: '0.2' } }.to_json, request_headers
 
       expect(response).to be_success
-      expect(json['key']).to eq u.sessions.first.key
+      expect(json['key']['key']).to eq u.sessions.first.key.key
     end
   end
 end

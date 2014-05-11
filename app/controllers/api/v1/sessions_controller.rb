@@ -21,7 +21,7 @@ module Api
 
       def show
         if @session
-          respond_with @session, status: 200
+          respond_with @session, methods: :key, status: 200
         else
           respond_with({ errors: @session.errors.full_messages}, status: 404)
         end
@@ -33,7 +33,7 @@ module Api
         if user
           @session = user.sessions.build(user: user, started_at: Time.now, version: session_params[:version])
 
-          respond_with @session, status: 200, location: 'nil' if @session.save
+          respond_with @session, methods: :key, status: 200, location: 'nil' if @session.save
         else
           respond_with({ errors: 'Could not find user' }, status: 404, location: 'nil')
         end
