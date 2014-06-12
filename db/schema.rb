@@ -33,7 +33,9 @@ ActiveRecord::Schema.define(version: 20140510141133) do
   create_table "sessions", force: true do |t|
     t.datetime "started_at"
     t.datetime "ended_at"
-    t.string   "version",    null: false
+    t.string   "ac_version", null: false
+    t.string   "ot_version", null: false
+    t.string   "user_agent", null: false
     t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"

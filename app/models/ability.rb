@@ -6,6 +6,7 @@ class Ability
       can :read, User
       can :manage, User, id: user.id
       can :read, Session
+      can :search, User
 
       if user.admin?
         can :manage, :all

@@ -31,9 +31,17 @@ module Api
         user = User.find_by_id session_params[:user_id]
 
         if user
-          @session = user.sessions.build(user: user, started_at: Time.now, version: session_params[:version])
+          @session = user.sessions.build(user: user, started_at: Time.now,
+                                         ot_version: session_params[:ot_version],
+                                         ac_version: session_params[:ac_version],
+                                         user_agent: session_params[:user_agent])
 
-          respond_with @session, methods: :key, status: 200, location: 'nil' if @session.save
+          if @session.save
+            respond_with @session, methods: :key, status: 200, location: 'nil'
+          else
+            respond_with @session.errors
+          end
+
         else
           respond_with({ errors: 'Could not find user' }, status: 404, location: 'nil')
         end
@@ -42,7 +50,7 @@ module Api
       private
 
       def session_params
-        params.require(:session).permit(:version, :user_id)
+        params.require(:session).permit(:ot_version, :ac_version, :user_id, :user_agent, :user_id)
       end
     end
   end

@@ -3,7 +3,9 @@ class CreateSessions < ActiveRecord::Migration
     create_table :sessions do |t|
       t.datetime :started_at
       t.datetime :ended_at
-      t.string :version, null: false
+      t.string :ac_version, null: false
+      t.string :ot_version, null: false
+      t.string :user_agent, null: false
       t.belongs_to :user, null: false
 
       t.timestamps
