@@ -4,6 +4,8 @@ module Api
       load_resource
       skip_authorization_check
 
+      before_filter :restrict_access, except: [:create]
+
       class Session < ::Session
       end
 
@@ -31,15 +33,14 @@ module Api
         user = User.find_by_id session_params[:user_id]
 
         if user
-          @session = user.sessions.build(user: user, started_at: Time.now,
-                                         ot_version: session_params[:ot_version],
-                                         ac_version: session_params[:ac_version],
-                                         user_agent: session_params[:user_agent])
+          @session = user.sessions.build(session_params)
+          @session.started_at = Time.now
+
 
           if @session.save
             respond_with @session, methods: :key, status: 200, location: 'nil'
           else
-            respond_with @session.errors
+            respond_with @session, status: :unprocessable_entity
           end
 
         else
@@ -47,10 +48,25 @@ module Api
         end
       end
 
+      def update
+        if @session.update!(session_params)
+          respond_with @session
+        else
+          respond_with @session.errors, status:  :unprocessable_entity
+        end
+      end
+
       private
 
+      # http://railscasts.com/episodes/352-securing-an-api
+      def restrict_access
+        authenticate_or_request_with_http_token do |token, options|
+          Key.exists?(key: token)
+        end
+      end
+
       def session_params
-        params.require(:session).permit(:ot_version, :ac_version, :user_id, :user_agent, :user_id)
+        params.require(:session).permit(:ot_version, :ac_version, :user_id, :user_agent, :user_id, :ended_at)
       end
     end
   end

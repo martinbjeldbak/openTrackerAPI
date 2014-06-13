@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :session do
     user
     ot_version '0.1'
-    ac_version '0.9'
+    ac_version '1.0'
     user_agent 'rspec'
 
     trait :not_ended do

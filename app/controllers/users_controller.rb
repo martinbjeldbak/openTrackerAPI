@@ -15,8 +15,6 @@ class UsersController < ApplicationController
   def search
     @users = User.search(params[:q]).order('created_at DESC')
 
-
-
     respond_to do |format|
       format.html
       format.json { render json: @users }
