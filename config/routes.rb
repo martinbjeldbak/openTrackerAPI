@@ -1,4 +1,6 @@
 OpenTracker::Application.routes.draw do
+  require 'api_constraints'
+
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   root 'application#index'
@@ -10,8 +12,8 @@ OpenTracker::Application.routes.draw do
   end
 
   namespace :api, defaults: {format: :json} do
-    namespace :v1 do
-      resources :sessions, only: [:show, :index, :create]
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
+      resources :sessions, only: [:show, :index, :create, :update]
     end
   end
 end
