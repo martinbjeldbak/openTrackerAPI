@@ -58,15 +58,15 @@ module Api
 
       private
 
+      def session_params
+        params.require(:session).permit(:ot_version, :ac_version, :user_id, :user_agent, :user_id, :ended_at)
+      end
+
       # http://railscasts.com/episodes/352-securing-an-api
       def restrict_access
         authenticate_or_request_with_http_token do |token, options|
           Key.exists?(key: token)
         end
-      end
-
-      def session_params
-        params.require(:session).permit(:ot_version, :ac_version, :user_id, :user_agent, :user_id, :ended_at)
       end
     end
   end

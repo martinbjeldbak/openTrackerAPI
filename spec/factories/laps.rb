@@ -3,5 +3,7 @@
 FactoryGirl.define do
   factory :lap do
     lap_nr 1
+
+    session { FactoryGirl.create(:session) }
   end
 end
