@@ -6,10 +6,11 @@ module Api
 
       before_filter ->(c) { c.ensure_session_auth @session}, only: :update
 
+      respond_to :json
+
+
       class Session < ::Session
       end
-
-      respond_to :json
 
       def index
         @sessions = Session.all
