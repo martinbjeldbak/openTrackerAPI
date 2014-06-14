@@ -4,7 +4,7 @@ module Api
       load_resource
       skip_authorization_check
 
-      before_filter :restrict_access, except: [:create]
+      before_filter :restrict_access, only: [:update]
 
       class Session < ::Session
       end

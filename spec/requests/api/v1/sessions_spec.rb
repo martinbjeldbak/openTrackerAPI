@@ -39,7 +39,8 @@ describe 'Sessions API' do
       expect(response).to be_success
 
       expect(json['started_at']).to eq s.started_at
-      expect(json['version']).to eq s.version
+      expect(json['ot_version']).to eq s.ot_version
+      expect(json['ac_version']).to eq s.ac_version
       expect(json['user_id']).to eq s.user.id
       expect(json['id']).to eq s.id
       expect(json['key']['key']).to eq s.key.key
