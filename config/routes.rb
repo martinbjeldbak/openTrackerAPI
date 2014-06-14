@@ -12,7 +12,9 @@ OpenTracker::Application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :sessions, only: [:show, :index, :create, :update] do
-        resources :laps, only: [:index, :update, :create]
+        resources :laps, only: [:create] do
+          resources :positions, only: [:create]
+        end
       end
     end
   end
