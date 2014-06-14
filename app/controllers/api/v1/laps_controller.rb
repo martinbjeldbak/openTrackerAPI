@@ -8,7 +8,7 @@ module Api
 
       # lap_nr, session
 
-      before_filter :ensure_session_auth
+      before_filter ->(c) { c.ensure_session_auth @session}
 
       def index
 
@@ -26,15 +26,6 @@ module Api
 
       def laps_params
         params.require(:lap).permit(:lap_nr, :session_id)
-      end
-
-      # http://railscasts.com/episodes/352-securing-an-api
-      # Require a session token to do anything with laps
-      def ensure_session_auth
-        authenticate_or_request_with_http_token do |token, options|
-          @session.key.key == token
-          #Key.exists?(key: token)
-        end
       end
     end
   end

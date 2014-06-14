@@ -4,7 +4,7 @@ module Api
       load_resource
       skip_authorization_check
 
-      before_filter :restrict_access, only: [:update]
+      before_filter ->(c) { c.ensure_session_auth @session}, only: :update
 
       class Session < ::Session
       end
@@ -63,11 +63,11 @@ module Api
       end
 
       # http://railscasts.com/episodes/352-securing-an-api
-      def restrict_access
-        authenticate_or_request_with_http_token do |token, options|
-          Key.exists?(key: token)
-        end
-      end
+      #def restrict_access
+      #  authenticate_or_request_with_http_token do |token, options|
+      #    Key.exists?(key: token)
+      #  end
+      #end
     end
   end
 end

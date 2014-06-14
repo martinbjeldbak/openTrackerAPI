@@ -16,4 +16,12 @@ class ApplicationController < ActionController::Base
       format.json { render json: { errors: ex.message}, status: 401}
     end
   end
+
+  protected
+
+  def ensure_session_auth(sess)
+    authenticate_or_request_with_http_token do |token, options|
+      sess.key.key == token
+    end
+  end
 end
