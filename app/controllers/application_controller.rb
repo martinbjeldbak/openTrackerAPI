@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # http://railscasts.com/episodes/352-securing-an-api
+  # Require a session token to do anything with laps
   def ensure_session_auth(sess)
     authenticate_or_request_with_http_token do |token, options|
       sess.key.key == token

@@ -2,10 +2,6 @@ module Api
   module V1
     class LapsController < ApplicationController
       skip_authorization_check
-      #load_resource :session
-      #load_resource through: :session
-      #load_and_authorize_resource :session
-      #load_and_authorize_resource through: :session
 
       # lap_nr, session
 
@@ -37,9 +33,8 @@ module Api
       private
 
       def load_and_auth_sess
-        @session = Session.where(id: params[:session_id]).first
-
-        ensure_session_auth(@session)
+        @session = Session.find_by_id params[:session_id]
+        ensure_session_auth @session
       end
 
       def laps_params

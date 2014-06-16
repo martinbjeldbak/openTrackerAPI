@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :position do
-    x 1
-    y 1
-    z 1
+    x Random.rand(-100...1000)
+    y Random.rand(-100...1000)
+    z Random.rand(-100...1000)
   end
 end

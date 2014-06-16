@@ -1,4 +1,5 @@
 require 'spec_helper'
+include Helpers
 
 describe 'Sessions API' do
 
@@ -17,14 +18,11 @@ describe 'Sessions API' do
     let(:s) { FactoryGirl.create :session }
 
     it 'updates using an api key' do
-      request_headers = { 'Content-Type' => 'application/json',
-                          #'HTTP_AUTHORIZATION' => ActionController::HttpAuthentication::Token.encode_credentials(s.key.key) }
-                          'HTTP_AUTHORIZATION' => "Token token=\"#{s.key.key}\""}
 
       end_time = Time.now
       data = {session: { ended_at: end_time }}.to_json
 
-      patch "/api/v1/sessions/#{s.id}", data, request_headers
+      patch "/api/v1/sessions/#{s.id}", data, session_auth_header(s)
 
       expect(response.status).to_not eq 401
     end
@@ -34,7 +32,7 @@ describe 'Sessions API' do
     it 'returns a requested session' do
       s = FactoryGirl.create :session
 
-      get "/api/v1/sessions/#{s.id}", {}, { Accept: 'application/json' }
+      get "/api/v1/sessions/#{s.id}", {}, json_request_header
 
       expect(response).to be_success
 
@@ -57,14 +55,10 @@ describe 'Sessions API' do
           }
         }.to_json
 
-        request_headers = {
-          Accept: 'application/json',
-          'Content-Type' => 'application/json'
-        }
-
-        post '/api/v1/sessions', session_params, request_headers
+        post '/api/v1/sessions', session_params, json_request_header
 
         expect(response.status).to eq 404
+        expect(json['errors']).to eq 'Could not find user'
       end
     end
 
@@ -72,16 +66,13 @@ describe 'Sessions API' do
       let (:u) { FactoryGirl.create :user }
 
       it 'does not POST a valid ot version' do
-        request_headers = { 'Content-Type' => 'application/json' }
-        post '/api/v1/sessions', { session: { user_id: u.id, user_agent: 'rspec', ac_version: '1.0', ot_version: '0.0' } }.to_json, request_headers
+        post '/api/v1/sessions', { session: { user_id: u.id, user_agent: 'rspec', ac_version: '1.0', ot_version: '0.0' } }.to_json, json_request_header
 
         expect(json['errors']['ot_version']).to eql(['0.0 is not a valid OpenTracker version'])
       end
 
       it 'returns a new API key' do
-        request_headers = { 'Content-Type' => 'application/json' }
-
-        post '/api/v1/sessions', { session: { user_id: u.id, ot_version: '0.1', user_agent: 'rspec', ac_version: '1.0' } }.to_json, request_headers
+        post '/api/v1/sessions', { session: { user_id: u.id, ot_version: '0.1', user_agent: 'rspec', ac_version: '1.0' } }.to_json, json_request_header
 
         expect(response).to be_success
         expect(json['key']['key']).to eq u.sessions.first.key.key
