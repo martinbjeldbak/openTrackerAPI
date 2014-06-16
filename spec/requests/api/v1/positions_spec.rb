@@ -7,10 +7,16 @@ describe 'positions API' do
 
     it 'allows creation of a lap upon legal input' do
       post api_v1_session_lap_positions_path(lap.session.id, lap.id),
-           {x: -28, y: 5, z: 0 }.to_json,
+           { x: -28, y: 5, z: 2.5 }.to_json,
            session_auth_header(lap.session)
 
       expect(response).to be_success
+      pos = Position.last
+
+      expect(pos.x).to eq -28
+      expect(pos.y).to eq 5
+      expect(pos.z).to eq 2.5
+      expect(pos.lap).to eq lap
     end
   end
 end

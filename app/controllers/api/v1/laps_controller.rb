@@ -3,10 +3,6 @@ module Api
     class LapsController < ApplicationController
       skip_authorization_check
 
-      # lap_nr, session
-
-      #before_filter ->(c) { c.ensure_session_auth @session}
-
       before_filter :load_and_auth_sess
 
       respond_to :json

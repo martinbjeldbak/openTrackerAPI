@@ -21,6 +21,7 @@ describe 'laps API' do
       expect(Lap.count).to eql 1
       expect(Lap.first.lap_nr).to eql 2
       expect(Lap.first.session).to eql s
+      expect(Lap.first.id).to eql json['id']
     end
   end
 
