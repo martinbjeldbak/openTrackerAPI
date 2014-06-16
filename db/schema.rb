@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 20140614151334) do
   end
 
   create_table "positions", force: true do |t|
-    t.integer  "x",          null: false
-    t.integer  "y",          null: false
-    t.integer  "z",          null: false
+    t.float    "x",          null: false
+    t.float    "y",          null: false
+    t.float    "z",          null: false
     t.integer  "lap_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
