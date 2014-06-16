@@ -22,10 +22,6 @@ module Api
         end
       end
 
-      def update
-
-      end
-
       private
 
       def load_and_auth_sess

@@ -21,7 +21,7 @@ module Api
       private
 
       def position_params
-        params.require(:position).permit(:x, :y, :z)
+        params.require(:position).permit(:x, :y, :z, :speed, :rpm)
       end
 
       def load_parents
