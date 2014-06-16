@@ -43,6 +43,11 @@ ActiveRecord::Schema.define(version: 20140614151334) do
     t.float    "z",          null: false
     t.float    "rpm",        null: false
     t.float    "speed",      null: false
+    t.float    "steer_rot",  null: false
+    t.integer  "gear",       null: false
+    t.boolean  "on_gas",     null: false
+    t.boolean  "on_brake",   null: false
+    t.boolean  "on_clutch",  null: false
     t.integer  "lap_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
