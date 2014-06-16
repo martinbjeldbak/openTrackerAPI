@@ -41,6 +41,9 @@ gem 'omniauth-steam'
 
 gem 'haml-rails'
 
+gem 'ember-rails'
+gem 'ember-source', '~> 1.5.1.1'
+
 #gem 'activeadmin', github: 'gregbell/active_admin'
 
 group :doc do
