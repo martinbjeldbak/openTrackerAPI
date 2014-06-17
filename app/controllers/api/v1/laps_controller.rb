@@ -12,13 +12,13 @@ module Api
       end
 
       def create
-        @lap = Lap.new(laps_params)
-        @lap.session = @session
+        lap = Lap.new(laps_params)
+        lap.session = @session
 
-        if @lap.save
-          respond_with @lap, status: 200, location: 'nil'
+        if lap.save
+          respond_with lap, status: :created
         else
-          respond_with @lap, status: :unprocessable_entity
+          respond_with lap
         end
       end
 

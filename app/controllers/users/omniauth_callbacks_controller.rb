@@ -7,11 +7,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
       set_flash_message(:notice, :success, kind: 'Steam') if is_navigational_format?
-    else
-      session['devise.steam_data'] = request.env['omniauth.auth'].except('extra') # throw away 'extra' hash, it causes
+      #else
+      #  session['devise.steam_data'] = request.env['omniauth.auth'].except('extra') # throw away 'extra' hash, it causes
       # cookie overflow exception
 
-      redirect_to new_user_registration_url
+      #  redirect_to new_user_registration_url
     end
   end
 end

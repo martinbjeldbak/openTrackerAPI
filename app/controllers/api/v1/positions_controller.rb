@@ -8,13 +8,13 @@ module Api
       respond_to :json
 
       def create
-        @position = Position.new position_params
-        @position.lap = @lap
+        position = Position.new position_params
+        position.lap = @lap
 
-        if @position.save
-          respond_with @position, status: 200, location: 'nil'
+        if position.save
+          respond_with position, status: :created
         else
-          respond_with @position, status: :unprocessable_entity
+          respond_with position
         end
       end
 

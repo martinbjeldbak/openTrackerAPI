@@ -34,14 +34,13 @@ module Api
         user = User.find_by_id session_params[:user_id]
 
         if user
-          @session = user.sessions.build(session_params)
-          @session.started_at = Time.now
+          session = user.sessions.build(session_params)
+          session.started_at = Time.now
 
-
-          if @session.save
-            respond_with @session, methods: :key, status: 200, location: 'nil'
+          if session.save
+            respond_with session, status: :created
           else
-            respond_with @session, status: :unprocessable_entity
+            respond_with session
           end
 
         else

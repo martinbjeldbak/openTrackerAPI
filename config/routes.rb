@@ -3,17 +3,17 @@ OpenTracker::Application.routes.draw do
 
   root 'application#index'
 
-  resources :users do
-    collection do
-      get 'search'
-    end
-  end
-
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :sessions, only: [:show, :index, :create, :update] do
         resources :laps, only: [:create] do
           resources :positions, only: [:create]
+        end
+      end
+
+      resources :users do
+        collection do
+          get 'search'
         end
       end
     end
