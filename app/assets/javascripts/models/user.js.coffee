@@ -7,3 +7,7 @@ OpenTracker.User.reopenClass
       Ember.run () ->
         users.pushObjects(data.users)
         users
+  find: (id) ->
+    $.getJSON("/api/v1/users/#{id}").then (users) ->
+      Ember.run () ->
+        OpenTracker.User.create(users.user)

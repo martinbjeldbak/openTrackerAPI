@@ -15,6 +15,7 @@ module Api
       end
 
       def show
+        render json: @user
       end
 
       def search
