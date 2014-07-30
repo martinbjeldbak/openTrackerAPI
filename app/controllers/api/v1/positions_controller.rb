@@ -5,16 +5,14 @@ module Api
       before_filter :load_parents
       before_filter :load_and_auth_sess
 
-      respond_to :json
-
       def create
         position = Position.new position_params
         position.lap = @lap
 
         if position.save
-          respond_with position, status: :created
+          render json: position, status: :created
         else
-          respond_with position
+          render json: position
         end
       end
 
