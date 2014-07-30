@@ -44,7 +44,7 @@ gem 'haml-rails'
 gem 'ember-rails'
 gem 'ember-source', '~> 1.5.1.1'
 
-gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
+gem 'active_model_serializers'
 
 #gem 'activeadmin', github: 'gregbell/active_admin'
 

@@ -12,10 +12,10 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def filter(keys)
-    if scope.admin?
+    if scope && scope.admin?
       keys
     else
-      keys - [:id, :admin, :sign_in_count, :current_sign_in_at, :last_sign_in_at,
+      keys - [:admin, :sign_in_count, :current_sign_in_at, :last_sign_in_at,
               :current_sign_in_ip, :created_at, :updated_at]
     end
   end

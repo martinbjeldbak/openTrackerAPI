@@ -5,8 +5,6 @@ module Api
 
       before_filter :load_and_auth_sess
 
-      respond_to :json
-
       def index
 
       end
@@ -16,9 +14,9 @@ module Api
         lap.session = @session
 
         if lap.save
-          respond_with lap, status: :created
+          render json: lap, status: :created
         else
-          respond_with lap
+          render json: lap
         end
       end
 

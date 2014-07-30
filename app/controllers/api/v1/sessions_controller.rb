@@ -38,9 +38,9 @@ module Api
           session.started_at = Time.now
 
           if session.save
-            respond_with session, status: :created
+            render json: session, status: :created
           else
-            respond_with session
+            render json: session
           end
 
         else

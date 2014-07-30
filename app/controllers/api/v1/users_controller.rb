@@ -20,6 +20,8 @@ module Api
       def search
         @users = User.search(params[:q]).order('created_at DESC')
 
+        logger.debug(@users.inspect)
+
         render json: @users
       end
     end
