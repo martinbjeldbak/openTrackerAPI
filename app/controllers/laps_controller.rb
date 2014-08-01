@@ -8,7 +8,7 @@ class LapsController < ApplicationController
   end
 
   def create
-    lap = Lap.new(laps_params)
+    lap = Lap.new(lap_params)
     lap.race_session = @race_session
 
     respond_to do |format|
@@ -27,7 +27,7 @@ class LapsController < ApplicationController
     ensure_session_auth @race_session
   end
 
-  def laps_params
+  def lap_params
     params.require(:lap).permit(:lap_nr)
   end
 end

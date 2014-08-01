@@ -25,7 +25,7 @@ class PositionsController < ApplicationController
 
   def load_parents
     @lap = Lap.find_by_id(params[:lap_id])
-    @race_session = @lap.race_session
+    @race_session = RaceSession.find_by_id(params[:race_session_id])
   end
 
   def load_and_auth_sess
