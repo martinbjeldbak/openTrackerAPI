@@ -1,6 +1,6 @@
-class CreateSessions < ActiveRecord::Migration
+class CreateRaceSessions < ActiveRecord::Migration
   def change
-    create_table :sessions do |t|
+    create_table :race_sessions do |t|
       t.datetime :started_at
       t.datetime :ended_at
       t.string :ac_version, null: false

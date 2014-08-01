@@ -13,12 +13,9 @@ gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.1'
 
-
-
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 #gem 'therubyracer', platforms: :ruby
-
-gem 'less-rails'
+#gem 'less-rails' using sass instead
 
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'sass-rails', '~> 4.0.2' # Use SCSS for stylesheets
@@ -41,7 +38,7 @@ gem 'cancancan', '~> 1.7'
 gem 'omniauth-steam'
 gem 'haml-rails'
 
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.9.0.alpha1'
 
 #gem 'activeadmin', github: 'gregbell/active_admin'
 
