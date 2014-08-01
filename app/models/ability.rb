@@ -5,7 +5,7 @@ class Ability
     if user
       can :read, User
       can :manage, User, id: user.id
-      can :read, Session
+      can :read, RaceSession
       can :search, User
 
       if user.admin?

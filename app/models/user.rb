@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:steam]
 
-  has_many :sessions
+  has_many :race_sessions
+  before_save :ensure_authenticaton_token
 
   def email_required?
     provider.blank?
@@ -26,6 +27,21 @@ class User < ActiveRecord::Base
       where('email = ? OR name = ? OR uid = ?', search, search, search)
     else
       all
+    end
+  end
+
+  def ensure_authenticaton_token
+    if authentication_token.blank?
+      self.authentication_token = generate_authentication_token
+    end
+  end
+
+  private
+
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.where(authentication_token: token).first
     end
   end
 end

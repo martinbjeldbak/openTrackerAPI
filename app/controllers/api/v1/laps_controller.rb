@@ -23,7 +23,7 @@ module Api
       private
 
       def load_and_auth_sess
-        @session = Session.find_by_id params[:session_id]
+        @session = RaceSession.find_by_id params[:session_id]
         ensure_session_auth @session
       end
 

@@ -11,16 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140614151334) do
+ActiveRecord::Schema.define(version: 20140801163900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "api_keys", force: true do |t|
-    t.string   "access_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "keys", force: true do |t|
     t.string   "key",          null: false
@@ -53,13 +47,11 @@ ActiveRecord::Schema.define(version: 20140614151334) do
     t.datetime "updated_at"
   end
 
-  create_table "sessions", force: true do |t|
+  create_table "race_sessions", force: true do |t|
     t.datetime "started_at"
     t.datetime "ended_at"
-    t.string   "ac_version", null: false
-    t.string   "ot_version", null: false
-    t.string   "user_agent", null: false
-    t.integer  "user_id",    null: false
+    t.string   "version"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -82,6 +74,7 @@ ActiveRecord::Schema.define(version: 20140614151334) do
     t.string   "name"
     t.string   "image"
     t.boolean  "admin",                  default: false
+    t.string   "authentication_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

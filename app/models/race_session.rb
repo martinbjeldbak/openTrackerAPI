@@ -1,4 +1,4 @@
-class Session < ActiveRecord::Base
+class RaceSession < ActiveRecord::Base
   # started_at, ended_at, version, user, key
 
   validates :ot_version, :ac_version, :user_id, presence: true
