@@ -5,8 +5,21 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find_or_create_for_oauth(request.env['omniauth.auth'])
 
     if @user.persisted?
-      sign_in_and_redirect @user, event: :authentication
-      set_flash_message(:notice, :success, kind: 'Steam') if is_navigational_format?
+      sign_in @user
+      render json: {
+        session: {
+          id: user.id
+        }
+      }
+    else
+      render json: {
+        errors: {
+          email: 'Invalid login credentials'
+        }
+      }, status: :unprocessable_entity
+
+      #sign_in_and_redirect @user, event: :authentication
+      #set_flash_message(:notice, :success, kind: 'Steam') if is_navigational_format?
       #else
       #  session['devise.steam_data'] = request.env['omniauth.auth'].except('extra') # throw away 'extra' hash, it causes
       # cookie overflow exception
