@@ -19,7 +19,7 @@ class Position < ActiveRecord::Base
 
   def check_delta
     # If update time has
-    if previous_position && (Time.now - previous_position.created_at) < 2.seconds
+    if previous_position && (Time.now - previous_position.created_at) < 1.seconds
       errors.add(:created_at, 'Updating too fast')
     end
   end
