@@ -4,13 +4,15 @@ OpenTracker::Application.routes.draw do
 
   root 'application#index'
 
-  resources :race_sessions, only: [:show, :index, :create, :update] do
-    resources :laps, only: [:create] do
-      resources :positions, only: [:create]
-    end
-  end
+  resources :events
 
   resources :users do
+    resources :race_sessions, only: [:show, :index, :create, :update] do
+      resources :laps, only: [:create] do
+        resources :positions, only: [:create]
+      end
+    end
+
     collection do
       get 'search'
     end

@@ -6,7 +6,7 @@ class RaceSessionsController < ApplicationController
 
 
   def index
-    @race_sessions = RaceSession.all
+    @race_sessions = RaceSession.where(user: current_user)
 
     respond_to do |format|
       if @race_sessions

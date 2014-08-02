@@ -12,6 +12,7 @@
         - if current_user
           = menu_item current_user.name, user_path(current_user)
           = menu_item 'Log out', destroy_user_session_path, method: :delete
+          = menu_tim 'sessions', race_sessions_path(current_user)
         - else
           = menu_item image_tag('http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_small.png'), user_omniauth_authorize_path(:steam)
     .container

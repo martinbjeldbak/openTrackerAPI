@@ -11,6 +11,7 @@ class PositionsController < ApplicationController
       if position.save
         format.json { render json: position, status: :created }
       else
+        logger.debug("Could not save position due to the following errors: #{position.errors.full_messages}")
         format.json { render json: position, status: :unprocessable_entity }
       end
     end

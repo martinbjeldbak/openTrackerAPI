@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:steam]
 
   has_many :race_sessions
+
   before_save :ensure_authenticaton_token
 
   def email_required?
