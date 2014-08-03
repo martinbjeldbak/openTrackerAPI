@@ -11,13 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140801124440) do
+ActiveRecord::Schema.define(version: 20140801231621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "api_keys", force: true do |t|
     t.string   "access_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,8 +36,8 @@ ActiveRecord::Schema.define(version: 20140801124440) do
   end
 
   create_table "laps", force: true do |t|
-    t.integer  "lap_nr",     null: false
-    t.integer  "session_id", null: false
+    t.integer  "lap_nr",          null: false
+    t.integer  "race_session_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,6 +67,7 @@ ActiveRecord::Schema.define(version: 20140801124440) do
     t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "event_id"
   end
 
   create_table "users", force: true do |t|
