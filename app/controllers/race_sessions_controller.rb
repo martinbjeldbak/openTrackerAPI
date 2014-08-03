@@ -1,5 +1,6 @@
 class RaceSessionsController < ApplicationController
-  load_resource
+  load_resource :user
+  load_resource through: :user
   skip_authorization_check
 
   before_filter ->(c) { c.ensure_session_auth @race_session}, only: :update
@@ -11,6 +12,13 @@ class RaceSessionsController < ApplicationController
     respond_to do |format|
       if @race_sessions
         format.json { render json: @race_sessions, status: 200 }
+        format.html {
+          if can? :read, RaceSession
+
+          else
+            raise CanCan::AccessDenied.new("Not authorized!", :view, RaceSession)
+          end
+        }
       else
         format.json { render json: { errors: @race_sessions.errors.full_messages }, status: 404 }
       end
@@ -22,6 +30,11 @@ class RaceSessionsController < ApplicationController
     respond_to do |format|
       if @race_session
         format.json { render json: @race_session, methods: :key, status: 200 }
+        format.html do
+          if can? :read, RaceSession
+
+          end
+        end
       else
         format.json ( render json: { errors: @race_session.errors.full_messages}, status: 404 )
       end

@@ -1,2 +1,2 @@
 - @race_sessions.each do |sess|
-  = link_to sess.id, race_session_path(sess)
+  = link_to sess.id, user_race_session_path(@user, sess)
