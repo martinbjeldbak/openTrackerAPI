@@ -42,11 +42,8 @@ class RaceSessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_id race_session_params[:user_id]
-
-    if user
       respond_to do |format|
-        session = user.race_sessions.build(race_session_params)
+        session = @user.race_sessions.build(race_session_params)
         session.started_at = Time.now
 
         if session.save
@@ -77,6 +74,6 @@ class RaceSessionsController < ApplicationController
   private
 
   def race_session_params
-    params.require(:race_session).permit(:ot_version, :ac_version, :user_id, :user_agent, :user_id, :ended_at)
+    params.require(:race_session).permit(:ot_version, :ac_version, :user_agent, :ended_at)
   end
 end
