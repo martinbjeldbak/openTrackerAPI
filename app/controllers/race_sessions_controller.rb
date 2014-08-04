@@ -56,10 +56,6 @@ class RaceSessionsController < ApplicationController
       format.json { render json: { errors: 'Could not find user' }, status: 404, location: 'nil' }
     end
 
-
-
-  end
-
   def update
     respond_to do |format|
       if @race_session.update!(race_session_params)
@@ -76,4 +72,5 @@ class RaceSessionsController < ApplicationController
   def race_session_params
     params.require(:race_session).permit(:ot_version, :ac_version, :user_agent, :ended_at)
   end
+
 end

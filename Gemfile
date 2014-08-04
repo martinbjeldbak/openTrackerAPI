@@ -3,10 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.1.0'
 
-# Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
 gem 'pg', '~> 0.17.1'
-
 
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 
@@ -37,6 +34,8 @@ gem 'cancancan', '~> 1.7'
 
 gem 'omniauth-steam'
 gem 'haml-rails'
+
+#gem 'puma'
 
 gem 'active_model_serializers', '~> 0.9.0.alpha1'
 
