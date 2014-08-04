@@ -16,7 +16,7 @@ gem 'coffee-rails', '~> 4.0.1'
 
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'sass-rails', '~> 4.0.2' # Use SCSS for stylesheets
-gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: 'bootstrap3'
+gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'
 gem 'autoprefixer-rails'
 
 # Use jquery as the JavaScript library
@@ -28,6 +28,8 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+gem 'eventmachine', github: 'eventmachine/eventmachine', branch: 'master'
+gem 'websocket-rails'
 
 gem 'devise'
 gem 'cancancan', '~> 1.7'

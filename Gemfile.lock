@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/eventmachine/eventmachine.git
+  revision: b7f2b34d6b8d04aa8fdb017059833b64c602d819
+  branch: master
+  specs:
+    eventmachine (1.0.3)
+
+GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 1d93c5a77049b3d21d17c847ad0531d7714fa229
   branch: bootstrap3
@@ -201,6 +208,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.1)
   database_cleaner
   devise
+  eventmachine!
   factory_girl_rails (~> 4.0)
   haml-rails
   jbuilder (~> 1.2)
