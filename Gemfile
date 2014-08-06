@@ -12,7 +12,6 @@ gem 'coffee-rails', '~> 4.0.1'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 #gem 'therubyracer', platforms: :ruby
-#gem 'less-rails' using sass instead
 
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'sass-rails', '~> 4.0.2' # Use SCSS for stylesheets
@@ -37,7 +36,7 @@ gem 'cancancan', '~> 1.7'
 gem 'omniauth-steam'
 gem 'haml-rails'
 
-#gem 'puma'
+gem 'puma'
 
 gem 'active_model_serializers', '~> 0.9.0.alpha1'
 
