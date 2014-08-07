@@ -63,6 +63,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.1)
+    d3-rails (3.4.4)
+      railties (>= 3.1)
     daemons (1.1.9)
     database_cleaner (1.3.0)
     devise (3.2.4)
@@ -232,6 +234,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.1.1)
   cancancan (~> 1.7)
   coffee-rails (~> 4.0.1)
+  d3-rails
   database_cleaner
   devise
   eventmachine!

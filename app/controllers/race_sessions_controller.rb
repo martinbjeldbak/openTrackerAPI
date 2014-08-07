@@ -52,9 +52,9 @@ class RaceSessionsController < ApplicationController
           format.json { render json: session }
         end
       end
-    else
-      format.json { render json: { errors: 'Could not find user' }, status: 404, location: 'nil' }
-    end
+      #format.json { render json: { errors: 'Could not find user' }, status: 404, location: 'nil' }
+  end
+
 
   def update
     respond_to do |format|

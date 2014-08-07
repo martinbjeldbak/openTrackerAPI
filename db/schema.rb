@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20140801231621) do
   end
 
   create_table "laps", force: true do |t|
-    t.integer  "lap_nr",     null: false
-    t.integer  "session_id", null: false
+    t.integer  "lap_nr",          null: false
+    t.integer  "race_session_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,8 +55,10 @@ ActiveRecord::Schema.define(version: 20140801231621) do
   create_table "race_sessions", force: true do |t|
     t.datetime "started_at"
     t.datetime "ended_at"
-    t.string   "version"
-    t.integer  "user_id"
+    t.string   "ac_version", null: false
+    t.string   "ot_version", null: false
+    t.string   "user_agent", null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "event_id"

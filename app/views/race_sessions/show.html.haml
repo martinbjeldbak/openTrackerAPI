@@ -1,2 +1,13 @@
 = @race_session.laps.inspect
 = @race_session.laps.last.positions.count
+
+.row
+  .col-md-8
+    %div#race-sess-canvas{data: {'race-session' => @race_session.id}}
+      %svg
+  .col-md-4.well
+    .race-ses-stats
+      .race-ses-title
+        Session stats:
+      .race-ses-stats
+        %p.race-sess-stat Laps: #{@race_session.laps.count}

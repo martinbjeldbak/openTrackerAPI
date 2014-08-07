@@ -40,6 +40,8 @@ gem 'puma'
 
 gem 'active_model_serializers', '~> 0.9.0.alpha1'
 
+gem 'd3-rails'
+
 #gem 'activeadmin', github: 'gregbell/active_admin'
 
 group :doc do

@@ -53,7 +53,7 @@ WebsocketRails.setup do |config|
   # with your `current_user` object. This class will be used when
   # synchronization is enabled and you trigger events from background
   # jobs using the WebsocketRails.users UserManager.
-  # config.user_class = User
+  config.user_class = User
 
   # Supporting HTTP streaming on Internet Explorer versions 8 & 9
   # requires CORS to be enabled for GET "/websocket" request.

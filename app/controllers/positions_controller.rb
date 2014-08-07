@@ -9,6 +9,7 @@ class PositionsController < ApplicationController
 
     respond_to do |format|
       if position.save
+        WebsocketRails["race_session_#{@race_session.id}_positions"].trigger(:create, position)
         format.json { render json: position, status: :created }
       else
         logger.debug("Could not save position due to the following errors: #{position.errors.full_messages}")
