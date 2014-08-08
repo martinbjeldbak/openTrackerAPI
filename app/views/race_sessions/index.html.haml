@@ -1,2 +1,7 @@
 - @race_sessions.each do |sess|
-  = link_to sess.id, user_race_session_path(@user, sess)
+  .race-session
+    = link_to sess.id, user_race_session_path(@user, sess)
+    - if sess.has_ended?
+      %span.label.label-default Ended
+    - else
+      %span.label.label-success Live!

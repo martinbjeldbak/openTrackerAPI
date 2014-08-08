@@ -70,7 +70,7 @@ class RaceSessionsController < ApplicationController
   private
 
   def race_session_params
-    params.require(:race_session).permit(:ot_version, :ac_version, :user_agent, :ended_at)
+    params.require(:race_session).permit(:ot_version, :ac_version, :car, :driver, :track, :track_config, :user_agent, :ended_at)
   end
 
 end

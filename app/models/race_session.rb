@@ -1,6 +1,4 @@
 class RaceSession < ActiveRecord::Base
-  # started_at, ended_at, version, user, key
-
   validates :ot_version, :ac_version, :user_id, presence: true
 
   validates :ac_version, inclusion: { in: %w(1.0),
@@ -18,5 +16,18 @@ class RaceSession < ActiveRecord::Base
 
   def add_key
     self.key = Key.new
+  end
+
+  def has_ended?
+    if ended_at != nil
+      true
+    elsif (Time.now - self.laps.last.positions.last.created_at) > 15.minutes
+      # Since 15 mins have gone since last position for this session, update ended_at
+      self.ended_at = self.laps.last.positions.last.created_at
+      self.save!
+      true
+    else
+      false
+    end
   end
 end

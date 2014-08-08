@@ -1,13 +1,35 @@
-= @race_session.laps.inspect
-= @race_session.laps.last.positions.count
-
 .row
   .col-md-8
     %div#race-sess-canvas{data: {'race-session' => @race_session.id}}
       %svg
-  .col-md-4.well
-    .race-ses-stats
-      .race-ses-title
-        Session stats:
-      .race-ses-stats
-        %p.race-sess-stat Laps: #{@race_session.laps.count}
+  .col-md-4
+    .panel.panel-default
+      .panel-heading Session stats
+      .panel-body
+        .race-sess-stats
+          .race-sess-stat
+            %p.race-sess-driver
+              #{RaceSession.human_attribute_name('driver')}:
+              %span.race-sess-driver= @race_session.driver
+          .race-sess-stat
+            %p.race-sess-track
+              #{RaceSession.human_attribute_name('track')}:
+              %span.race-sess-track= t(@race_session.track, scope: [:tracks])
+          .race-sess-stat
+            %p.race-sess-car
+              #{RaceSession.human_attribute_name('car')}:
+              %span.race-sess-car= t(@race_session.car, scope: [:cars])
+          .race-sess-stat
+            %p.race-sess-speed
+              #{RaceSession.human_attribute_name('speed')}:
+              %span.race-sess-speed= @race_session.laps.last.positions.last.km_h.round(2)
+              km/h
+          .race-sess-stat
+            %p.race-sess-rpm
+              #{RaceSession.human_attribute_name('rpm')}:
+              %span.race-sess-rpm= @race_session.laps.last.positions.last.rpm.round
+              rpm
+          .race-sess-stat
+            %p.race-sess-gear
+              #{RaceSession.human_attribute_name('gear')}:
+              %span.race-sess-gear= @race_session.laps.last.positions.last.gear

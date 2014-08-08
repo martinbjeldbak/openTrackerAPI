@@ -15,12 +15,14 @@ class Position < ActiveRecord::Base
     end
   end
 
+  def km_h
+    self.speed * 3.6
+  end
+
   private
 
   def check_delta
     # If update time has
-    if previous_position && (Time.now - previous_position.created_at) < 1.seconds
-      errors.add(:created_at, 'Updating too fast')
-    end
+    #errors.add(:created_at, 'Updating too fast') if previous_position && (Time.now - previous_position.created_at) < 1.seconds
   end
 end

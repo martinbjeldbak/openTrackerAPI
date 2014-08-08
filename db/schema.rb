@@ -55,10 +55,14 @@ ActiveRecord::Schema.define(version: 20140801231621) do
   create_table "race_sessions", force: true do |t|
     t.datetime "started_at"
     t.datetime "ended_at"
-    t.string   "ac_version", null: false
-    t.string   "ot_version", null: false
-    t.string   "user_agent", null: false
-    t.integer  "user_id",    null: false
+    t.string   "ac_version",   null: false
+    t.string   "ot_version",   null: false
+    t.string   "user_agent",   null: false
+    t.string   "car",          null: false
+    t.string   "driver",       null: false
+    t.string   "track",        null: false
+    t.string   "track_config", null: false
+    t.integer  "user_id",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "event_id"

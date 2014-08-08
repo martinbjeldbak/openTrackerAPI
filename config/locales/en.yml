@@ -20,4 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  cars:
+    ferrari_458: Ferrari 458
+  tracks:
+    vallelunga-club: Vallelunga-club
+  activerecord:
+    attributes:
+      race_session:
+        rpm: RPM
