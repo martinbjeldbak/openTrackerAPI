@@ -21,8 +21,66 @@
 
 en:
   cars:
+    abarth500: Abarth 500 EsseEsse
+    abarth500_s1: Abarth 500 EsseEsse Step1
+    bmw_1m: BMW 1M
+    bmw_1m_s3: BMW 1M Stage 3
+    bmw_m3_e30: BMW M3 E30
+    bmw_m3_e30_drift: BMW M3 E30 Drift
+    bmw_m3_e30_dtm: BMW M3 E30 DTM
+    bmw_m3_e30_gra: BMW M3 E30 Gra
+    bmw_m3_e30_s1: BMW M3 E30 Step1
+    bmw_m3_e92: BMW M3 E92
+    bmw_m3_e92_drift: BMW M3 E92 Drift
+    bmw_m3_e92_s1: BMW M3 E92 Step1
+    bmw_m3_gt2: BMW M3 GT2
+    bmw_z4: BMW Z4
+    bmw_z4_drift: BMW Z4 Drift
+    bmw_z4_gt3: BMW Z4 GT3
+    bmw_z4_s1: BMW Z4 Step1
+    ferrari_312t: Ferrari 312T
     ferrari_458: Ferrari 458
+    ferrari_458_s3: Ferrari 458 Step3
+    ferrari_599xxevo: Ferrari 599XX EVO
+    ferrari_f40: Ferrari F40
+    ferrari_f40_s3: Ferrari F40 Step3
+    ktm_xbow_r: KTM X-Bow R
+    lotus_2_eleven: Lotos 2 Eleven
+    lotus_49: Lotus 49
+    lotus_92t: Lotos 92T
+    lotus_elice_sc: Lotus Elise SC
+    lotus_elice_sc_s1: Lotus Elise SC Step1
+    lotus_elice_sc_s2: Lotus Elise SC Step2
+    lotus_evora_gtc: Lotus Evora GTC
+    lotus_evora_gte: Lotus Evora GTE
+    lotus_evora_gx: Lotus Evora GX
+    lotus_evora_s: Lotus Evora S
+    lotus_evora_s_s2: Lotus Evora S Step2
+    lotus_exige_240: Lotus Exige 240
+    lotus_exige_240_s3: Lotus Exige 240 Step3
+    lotus_exige_s_roadster: Lotus Exige S Roadster
+    lotus_exige_scura: Lotus Exige Scura
+    lotus_exos_125: Lotus Exos 125
+    lotus_exos_125_s1: Lotus Exos 125 Step1
+    mclaran_mp412c: McLaran MP4-12C
+    mclaran_mp412c_gt3: McLaran MP4-12C GT3
+    p4-5_2011: P4/5 Competizione model 2011
+    pagani_huayra: Pagani Huayra
+    pagani_zonda_r: Pagani Zonda R
+    tatuusfa1: Formula Abarth
   tracks:
+    drag400: Drag 400m
+    drag1000: Drag 1000m
+    drift: DRIFT
+    imola: Imola
+    magione: Magione
+    monza: Monza
+    monza66: Monza 1966
+    mugello: Mugello
+    nurburgring: Nurburgring GP
+    silverstone: Silverstone
+    silverstone-international: Silverstone-International
+    vallelunga: Vallelunga
     vallelunga-club: Vallelunga-club
   activerecord:
     attributes:
