@@ -33,3 +33,11 @@
             %p.race-sess-gear
               #{RaceSession.human_attribute_name('gear')}:
               %span.race-sess-gear= @race_session.laps.last.positions.last.gear
+          .race-sess-stat
+            %p.race-sess-on-gas
+              #{RaceSession.human_attribute_name('on_gas')}:
+              %span.race-sess-on-gas
+          .race-sess-stat
+            %p.race-sess-on-brake
+              #{RaceSession.human_attribute_name('on_brake')}:
+              %span.race-sess-on-brake

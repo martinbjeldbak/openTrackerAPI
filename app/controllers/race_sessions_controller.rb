@@ -5,7 +5,6 @@ class RaceSessionsController < ApplicationController
 
   before_filter ->(c) { c.ensure_session_auth @race_session}, only: :update
 
-
   def index
     @race_sessions = RaceSession.where(user: current_user)
 
@@ -13,11 +12,7 @@ class RaceSessionsController < ApplicationController
       if @race_sessions
         format.json { render json: @race_sessions, status: 200 }
         format.html {
-          if can? :read, RaceSession
-
-          else
-            raise CanCan::AccessDenied.new("Not authorized!", :view, RaceSession)
-          end
+          raise CanCan::AccessDenied.new("Not authorized!", :view, RaceSession) if cannot? :read, RaceSession
         }
       else
         format.json { render json: { errors: @race_sessions.errors.full_messages }, status: 404 }
@@ -31,9 +26,7 @@ class RaceSessionsController < ApplicationController
       if @race_session
         format.json { render json: @race_session, methods: :key, status: 200 }
         format.html do
-          if can? :read, RaceSession
-
-          end
+          raise CanCan::AccessDenied.new("Not authorized!", :view, RaceSession) if cannot? :read, RaceSession
         end
       else
         format.json ( render json: { errors: @race_session.errors.full_messages}, status: 404 )
@@ -52,7 +45,6 @@ class RaceSessionsController < ApplicationController
           format.json { render json: session }
         end
       end
-      #format.json { render json: { errors: 'Could not find user' }, status: 404, location: 'nil' }
   end
 
 
@@ -64,13 +56,13 @@ class RaceSessionsController < ApplicationController
         format.json { render json: @race_session.errors, status:  :unprocessable_entity }
       end
     end
-
   end
 
   private
 
   def race_session_params
-    params.require(:race_session).permit(:ot_version, :ac_version, :car, :driver, :track, :track_config, :user_agent, :ended_at)
+    params.require(:race_session).permit(:ot_version, :ac_version, :car, :driver,
+                                         :track, :track_config, :user_agent, :ended_at)
   end
 
 end

@@ -8,8 +8,8 @@ class CreatePositions < ActiveRecord::Migration
       t.float :speed, null: false # speed in m/s
       t.float :steer_rot, null: false # steering rotation in radians
       t.integer :gear, null: false
-      t.boolean :on_gas, null: false
-      t.boolean :on_brake, null: false
+      t.float :on_gas, null: false
+      t.float :on_brake, null: false
       t.boolean :on_clutch, null: false
 
       t.belongs_to :lap, null: false

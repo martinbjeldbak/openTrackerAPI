@@ -1,6 +1,10 @@
 class Position < ActiveRecord::Base
   validates :steer_rot, numericality: { greater_than_or_equal_to: -451,
                                         less_than_or_equal_to: 451}
+  validates :on_brake, numericality: { greater_than_or_equal_to: 0.0,
+                                       less_than_or_equal_to: 1.0}
+  validates :on_gas, numericality: { greater_than_or_equal_to: 0.0,
+                                       less_than_or_equal_to: 1.0}
   validate :check_delta
 
   belongs_to :lap

@@ -7,6 +7,8 @@ class PositionsController < ApplicationController
     position = Position.new position_params
     position.lap = @lap
 
+    (position_params[:on_clutch] == 1.0) ? position.on_clutch = true : position.on_clutch = false
+
     respond_to do |format|
       if position.save
         WebsocketRails["race_session_#{@race_session.id}_positions"].trigger(:create, position)

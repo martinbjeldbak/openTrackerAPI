@@ -21,7 +21,7 @@ class RaceSession < ActiveRecord::Base
   def has_ended?
     if ended_at != nil
       true
-    elsif (Time.now - self.laps.last.positions.last.created_at) > 15.minutes
+    elsif self.laps.last.positions.count > 0 && (Time.now - self.laps.last.positions.last.created_at) > 15.minutes
       # Since 15 mins have gone since last position for this session, update ended_at
       self.ended_at = self.laps.last.positions.last.created_at
       self.save!
