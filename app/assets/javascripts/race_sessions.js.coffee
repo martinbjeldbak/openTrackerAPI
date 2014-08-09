@@ -18,11 +18,8 @@ class Map
     @data = new Array
   updatePosition: (x, y) ->
     @data.push {x: x, y: y}
-
     @container.select('#player_path').remove()
     @container.append('path').attr('d', @lineFunction(@data)).style('stroke-width', 2).style('stroke', 'steelblue').attr('fill', 'none').attr('id', 'player_path')
-
-
 
 jQuery ->
   svgContainer = d3.select('#race-sess-canvas svg')
@@ -30,8 +27,8 @@ jQuery ->
   $race_session_id = $canvas.data('race-session')
 
   # Functions to scale given x and y coordinates down to the svg container's size
-  position_linear_scale_x = d3.scale.linear().domain([-1000, 1000]).range([0, $canvas.width()])
-  position_linear_scale_y = d3.scale.linear().domain([-1000, 1000]).range([0, $canvas.height()])
+  #position_linear_scale_x = d3.scale.linear().domain([-1000, 1000]).range([0, $canvas.width()])
+  #position_linear_scale_y = d3.scale.linear().domain([-1000, 1000]).range([0, $canvas.height()])
 
   drawing = new Map svgContainer
 
@@ -47,11 +44,17 @@ jQuery ->
     success: (data, textStatus, jqXHR) ->
       race_session = data.race_session
 
-      imgs = svgContainer.selectAll('image').data([0])
-      imgs.enter().append('svg:image')
+      map = new Image
+      map.src = race_session.track_img_path
+      map.onload = () ->
+        imgs = svgContainer.selectAll('image').data([0])
+        imgs.enter().append('svg:image')
         .attr('xlink:href', race_session.track_img_path)
-        .attr('height',$canvas.height())
-        .attr('width', $canvas.width())
+        .attr('height', @height)
+        .attr('width', @width)
+
+
+
 
 
   toggleBinaryLabel = ($elem, val) ->
@@ -67,16 +70,13 @@ jQuery ->
   # When new position is created
   channel.bind('create', (data) ->
     # Update dot on the map
-    drawing.updatePosition(position_linear_scale_x(data.x), position_linear_scale_y(data.z))
-
-    #console.log("#{data.x} (#{position_linear_scale_x data.x}) and #{data.z} (#{position_linear_scale_y data.z})")
+    drawing.updatePosition(data.x + 20, data.z + 20)
 
     # Update attributes on page
     $('span.race-sess-speed').text(roundTo(msToKmh(data.speed), 2))
     $('span.race-sess-rpm').text(roundTo(data.rpm, 2))
     $('span.race-sess-gear').text(gearMap(data.gear))
 
-    # Set on gas variables
     toggleBinaryLabel($('span.race-sess-on-gas'), roundTo(data.on_gas, 2))
     toggleBinaryLabel($('span.race-sess-on-brake'), roundTo(data.on_brake, 2))
   )
