@@ -8,6 +8,7 @@ class RaceSession < ActiveRecord::Base
                                    message: "%{value} is not a valid OpenTracker version"}
 
   belongs_to :user
+  #belongs_to :track
   has_many :laps
   has_one :key, as: :keyable
   accepts_nested_attributes_for :key
