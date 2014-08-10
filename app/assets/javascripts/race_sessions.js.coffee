@@ -19,20 +19,29 @@ class Map
   updatePosition: (x, y) ->
     @data.push {x: x, y: y}
     @container.select('#player_path').remove()
-    @container.append('path').attr('d', @lineFunction(@data)).style('stroke-width', 2).style('stroke', 'steelblue').attr('fill', 'none').attr('id', 'player_path')
+    @container.append('path').attr('d', @lineFunction(@data)).style('stroke-width', 2)
+      .style('stroke', 'steelblue').attr('fill', 'none').attr('id', 'player_path')
 
 jQuery ->
   svgContainer = d3.select('#race-sess-canvas svg')
   $canvas = $('#race-sess-canvas')
 
-  
-  $canvas.width('599.505').height('256.251')
+  reduction_ratio = 0.5
+  actual_map_width = 599.505
+  actual_map_height = 256.251
+  x_offset = 20
+  z_offset = 20
+  map_width = actual_map_width * reduction_ratio
+  map_height = actual_map_height * reduction_ratio
+
+
+  $canvas.width(map_width).height(map_height)
 
   $race_session_id = $canvas.data('race-session')
 
   # Functions to scale given x and y coordinates down to the svg container's size
-  position_linear_scale_x = d3.scale.linear().domain([0, 599.50]).range([0, $canvas.width()])
-  position_linear_scale_y = d3.scale.linear().domain([0, 256.251]).range([0, $canvas.height()])
+  position_linear_scale_x = d3.scale.linear().domain([0, actual_map_width]).range([0, map_width])
+  position_linear_scale_y = d3.scale.linear().domain([0, actual_map_height]).range([0, map_height])
 
   drawing = new Map svgContainer
 
@@ -76,9 +85,9 @@ jQuery ->
   # When new position is created
   channel.bind('create', (data) ->
     # Update dot on the map
-    drawing.updatePosition(position_linear_scale_x(data.x + 20), position_linear_scale_y(data.z + 20))
+    drawing.updatePosition(position_linear_scale_x((data.x + x_offset)), position_linear_scale_y(data.z + z_offset))
 
-    console.log(position_linear_scale_x(data.x + 20) + " " + position_linear_scale_y(data.z + 20))
+    #console.log(position_linear_scale_x(data.x + x_offset) + " " + position_linear_scale_y(data.z + z_offset))
 
     updateSessionAttributes(data)
 
