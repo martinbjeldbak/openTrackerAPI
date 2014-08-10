@@ -38,6 +38,8 @@ class RaceSessionsController < ApplicationController
       respond_to do |format|
         session = @user.race_sessions.build(race_session_params)
         session.started_at = Time.now
+        session.track = Track.where(img_name: params[:track][:track]).first
+        logger.debug(session.track.inspect)
 
         if session.save
           format.json { render json: session, status: :created }
@@ -61,8 +63,7 @@ class RaceSessionsController < ApplicationController
   private
 
   def race_session_params
-    params.require(:race_session).permit(:ot_version, :ac_version, :car, :driver,
-                                         :track, :track_config, :user_agent, :ended_at)
+    params.require(:race_session).permit(:ot_version, :ac_version, :car, :driver, :user_agent, :ended_at)
   end
 
 end

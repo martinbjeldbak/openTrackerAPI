@@ -22,15 +22,38 @@ class Map
     @container.append('path').attr('d', @lineFunction(@data)).style('stroke-width', 2)
       .style('stroke', 'steelblue').attr('fill', 'none').attr('id', 'player_path')
 
+
+
+
 jQuery ->
+  class SessionInfo
+    constructor: (@user_id, @session_id) ->
+      @session = @getInfo()
+      @track = @session.track
+
+    getInfo: () ->
+      info = {}
+      $.ajax
+        url: "/users/#{@user_id}/race_sessions/#{@session_id}"
+        dataType: 'json'
+        async: false
+        success: (data) ->
+          info = data.race_session
+      return info
+
+
+
   svgContainer = d3.select('#race-sess-canvas svg')
   $canvas = $('#race-sess-canvas')
 
-  reduction_ratio = 0.5
-  actual_map_width = 599.505
-  actual_map_height = 256.251
-  x_offset = 20
-  z_offset = 20
+  session_info = new SessionInfo $canvas.data('user'), $canvas.data('race-session')
+
+  scale_factor = session_info.track.scale_factor # scaling of the map, defined in .ini
+  reduction_ratio = session_info.track.img_scale #
+  actual_map_width = session_info.track.img_width * scale_factor
+  actual_map_height = session_info.track.img_height * scale_factor
+  x_offset = session_info.track.x_offset
+  z_offset = session_info.track.z_offset
   map_width = actual_map_width * reduction_ratio
   map_height = actual_map_height * reduction_ratio
 
@@ -58,18 +81,12 @@ jQuery ->
     toggleBinaryLabel($('span.race-sess-on-gas'), roundTo(data.on_gas, 2))
     toggleBinaryLabel($('span.race-sess-on-brake'), roundTo(data.on_brake, 2))
 
-  # Get race_session information and set background to be track
-  $.ajax
-    url: window.location.pathname
-    dataType: 'json'
-    success: (data, textStatus, jqXHR) ->
-      race_session = data.race_session
 
-      imgs = svgContainer.selectAll('image').data([0])
-      imgs.enter().append('svg:image')
-        .attr('xlink:href', race_session.track_img_path)
-        .attr('height', $canvas.height())
-        .attr('width', $canvas.width())
+  imgs = svgContainer.selectAll('image').data([0])
+  imgs.enter().append('svg:image')
+    .attr('xlink:href', session_info.track.img_path)
+    .attr('height', $canvas.height())
+    .attr('width', $canvas.width())
 
 
   toggleBinaryLabel = ($elem, val) ->
@@ -85,7 +102,7 @@ jQuery ->
   # When new position is created
   channel.bind('create', (data) ->
     # Update dot on the map
-    drawing.updatePosition(position_linear_scale_x((data.x + x_offset)), position_linear_scale_y(data.z + z_offset))
+    drawing.updatePosition(position_linear_scale_x(data.x + x_offset), position_linear_scale_y(data.z + z_offset))
 
     #console.log(position_linear_scale_x(data.x + x_offset) + " " + position_linear_scale_y(data.z + z_offset))
 

@@ -55,27 +55,28 @@ ActiveRecord::Schema.define(version: 20140809182106) do
   create_table "race_sessions", force: true do |t|
     t.datetime "started_at"
     t.datetime "ended_at"
-    t.string   "ac_version",   null: false
-    t.string   "ot_version",   null: false
-    t.string   "user_agent",   null: false
-    t.string   "car",          null: false
-    t.string   "driver",       null: false
-    t.string   "track_config", null: false
-    t.integer  "user_id",      null: false
+    t.string   "ac_version", null: false
+    t.string   "ot_version", null: false
+    t.string   "user_agent", null: false
+    t.string   "car",        null: false
+    t.string   "driver",     null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "event_id"
-    t.string   "track"
+    t.integer  "track_id"
   end
 
   create_table "tracks", force: true do |t|
-    t.string   "name"
+    t.string   "name",                        null: false
     t.string   "configuration"
-    t.string   "img_name"
-    t.float    "img_height"
-    t.float    "img_width"
-    t.float    "x_offset"
-    t.float    "z_offset"
+    t.string   "img_name",                    null: false
+    t.float    "img_height",                  null: false
+    t.float    "img_width",                   null: false
+    t.float    "img_scale",     default: 1.0, null: false
+    t.float    "x_offset",                    null: false
+    t.float    "z_offset",                    null: false
+    t.float    "scale_factor",  default: 1.0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

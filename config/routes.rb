@@ -5,6 +5,7 @@ OpenTracker::Application.routes.draw do
   root 'application#index'
 
   resources :events
+  resources :tracks
 
   resources :users do
     resources :race_sessions, only: [:show, :index, :create, :update] do
