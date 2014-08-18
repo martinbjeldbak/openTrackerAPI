@@ -62,7 +62,7 @@ en:
     lotus_exige_scura: Lotus Exige Scura
     lotus_exos_125: Lotus Exos 125
     lotus_exos_125_s1: Lotus Exos 125 Step1
-    mclaran_mp412c: McLaran MP4-12C
+    mclaren_mp412c: McLaran MP4-12C
     mclaran_mp412c_gt3: McLaran MP4-12C GT3
     p4-5_2011: P4/5 Competizione model 2011
     pagani_huayra: Pagani Huayra
@@ -86,3 +86,6 @@ en:
     attributes:
       race_session:
         rpm: RPM
+      position:
+        on_gas: Throttle
+        on_brake: Brake

@@ -12,34 +12,34 @@
           .race-sess-stat
             %p.race-sess-driver
               #{RaceSession.human_attribute_name('driver')}:
-              %span.race-sess-driver= @race_session.driver
+              %span.race-sess-driver= link_to @race_session.driver, @race_session.user
           .race-sess-stat
             %p.race-sess-track
               #{RaceSession.human_attribute_name('track')}:
-              %span.race-sess-track= t(@race_session.track, scope: [:tracks])
+              %span.race-sess-track= link_to t(@race_session.track.name, scope: [:tracks]), @race_session.track
           .race-sess-stat
             %p.race-sess-car
               #{RaceSession.human_attribute_name('car')}:
               %span.race-sess-car= t(@race_session.car, scope: [:cars])
           .race-sess-stat
             %p.race-sess-speed
-              #{RaceSession.human_attribute_name('speed')}:
+              #{Position.human_attribute_name('speed')}:
               %span.race-sess-speed= @race_session.laps.last.positions.last.km_h.round(2)
               km/h
           .race-sess-stat
             %p.race-sess-rpm
-              #{RaceSession.human_attribute_name('rpm')}:
+              #{Position.human_attribute_name('rpm')}:
               %span.race-sess-rpm= @race_session.laps.last.positions.last.rpm.round
               rpm
           .race-sess-stat
             %p.race-sess-gear
-              #{RaceSession.human_attribute_name('gear')}:
+              #{Position.human_attribute_name('gear')}:
               %span.race-sess-gear= @race_session.laps.last.positions.last.gear
           .race-sess-stat
             %p.race-sess-on-gas
-              #{RaceSession.human_attribute_name('on_gas')}:
+              #{Position.human_attribute_name('on_gas')}:
               %span.race-sess-on-gas
           .race-sess-stat
             %p.race-sess-on-brake
-              #{RaceSession.human_attribute_name('on_brake')}:
+              #{Position.human_attribute_name('on_brake')}:
               %span.race-sess-on-brake
