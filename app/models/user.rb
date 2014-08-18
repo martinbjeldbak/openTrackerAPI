@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:steam]
 
-  has_many :race_sessions
+  has_many :race_sessions, dependent: :destroy
 
   before_save :ensure_authenticaton_token
 
