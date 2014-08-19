@@ -23,14 +23,21 @@ class ApplicationController < ActionController::Base
   # http://railscasts.com/episodes/352-securing-an-api
   # Require a session token to do anything with laps
   def ensure_session_auth(sess)
-    authenticate_or_request_with_http_token do |token, options|
-      sess.key.key == token
+    if request.variant == :opentracker
+      authenticate_or_request_with_http_token do |token, options|
+        sess.key.key == token
+      end
+    else
+      true
     end
   end
 
   private
 
   def set_variants
-    request.variant = :openTracker if request.user_agent =~ /openTracker/
+    case request.user_agent
+      when /openTracker/i
+        request.variant = :opentracker
+    end
   end
 end

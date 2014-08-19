@@ -1,7 +1,12 @@
 class PositionsController < ApplicationController
   skip_authorization_check
-  before_filter :load_parents
-  before_filter :load_and_auth_sess
+
+  load_resource :user
+  load_resource :race_session
+  load_resource :lap
+  load_resource through: :lap
+
+  before_filter ->(c) { c.ensure_session_auth @race_session}
 
   def create
     position = Position.new position_params
@@ -25,14 +30,5 @@ class PositionsController < ApplicationController
   def position_params
     params.require(:position).permit(:x, :y, :z, :speed, :rpm, :gear,
                                      :on_gas, :on_brake, :on_clutch, :steer_rot)
-  end
-
-  def load_parents
-    @lap = Lap.find_by_id(params[:lap_id])
-    @race_session = RaceSession.find_by_id(params[:race_session_id])
-  end
-
-  def load_and_auth_sess
-    ensure_session_auth @race_session
   end
 end

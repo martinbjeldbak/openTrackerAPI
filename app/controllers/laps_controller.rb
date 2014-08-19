@@ -1,10 +1,23 @@
 class LapsController < ApplicationController
   skip_authorization_check
 
-  before_filter :load_and_auth_sess
+  load_resource :race_session
+  load_resource :user
+  load_resource through: :race_session
+
+  before_filter ->(c) { c.ensure_session_auth @race_session}
 
   def index
+    respond_to do |format|
+      format.html
+      format.json { render json: @laps, status: 200 }
+    end
+  end
 
+  def show
+    respond_to do |format|
+      format.json { render json: @lap, status: 200}
+    end
   end
 
   def create
@@ -12,20 +25,17 @@ class LapsController < ApplicationController
     lap.race_session = @race_session
 
     respond_to do |format|
-      if lap.save
-        format.json { render json: lap, status: :created }
-      else
-        format.json { render json: lap, status: :unprocessable_entity }
+      format.json do
+        if lap.save
+          render json: lap, status: :created
+        else
+          render json: lap, status: :unprocessable_entity
+        end
       end
     end
   end
 
   private
-
-  def load_and_auth_sess
-    @race_session = RaceSession.find_by_id params[:race_session_id]
-    ensure_session_auth @race_session
-  end
 
   def lap_params
     params.require(:lap).permit(:lap_nr)

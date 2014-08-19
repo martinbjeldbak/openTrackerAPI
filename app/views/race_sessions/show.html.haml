@@ -22,6 +22,10 @@
               #{RaceSession.human_attribute_name('car')}:
               %span.race-sess-car= t(@race_session.car, scope: [:cars])
           .race-sess-stat
+            %p.race-sess-lap
+              #{Lap.human_attribute_name('lap')}:
+              %span.race-sess-lap= @race_session.lap_count
+          .race-sess-stat
             %p.race-sess-speed
               #{Position.human_attribute_name('speed')}:
               %span.race-sess-speed= @race_session.laps.last.positions.last.km_h.round(2)

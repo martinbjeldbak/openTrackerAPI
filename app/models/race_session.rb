@@ -19,6 +19,10 @@ class RaceSession < ActiveRecord::Base
     self.key = Key.new
   end
 
+  def lap_count
+    self.laps.count
+  end
+
   def has_ended?
     if ended_at != nil
       true

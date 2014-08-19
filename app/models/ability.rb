@@ -7,6 +7,7 @@ class Ability
       can :manage, User, id: user.id
       can :read, RaceSession
       can :search, User
+      can :read, Lap
 
       if user.admin?
         can :manage, :all

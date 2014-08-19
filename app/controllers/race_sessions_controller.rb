@@ -3,7 +3,7 @@ class RaceSessionsController < ApplicationController
   load_resource through: :user
   skip_authorization_check
 
-  before_filter ->(c) { c.ensure_session_auth @race_session}, only: :update
+  before_filter ->(c) { c.ensure_session_auth @race_session}
 
   def index
     @race_sessions = RaceSession.where(user: current_user)
@@ -39,7 +39,6 @@ class RaceSessionsController < ApplicationController
         session = @user.race_sessions.build(race_session_params)
         session.started_at = Time.now
         session.track = Track.where(img_name: params[:track][:track]).first
-        logger.debug(session.track.inspect)
 
         if session.save
           format.json { render json: session, status: :created }

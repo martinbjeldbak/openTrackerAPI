@@ -16,6 +16,20 @@ RaceSessionsController.prototype.show = () ->
       d3.scale.linear().domain(from_domain).range(to_domain)
 
   jQuery ->
+    class Lap
+      constructor: (@user_id, @session_id, @lap_id) ->
+        @lap = @getInfo(@user_id, @session_id, @lap_id)
+      getInfo: (user_id, session_id, lap_id) ->
+        info = {}
+        $.ajax
+          url: "/users/#{user_id}/race_sessions/#{session_id}/laps/#{lap_id}"
+          dataType: 'json'
+          async: false
+          success: (data) ->
+            info = data.lap
+        return info
+      number: -> @lap.number
+
     class SessionInfo
       constructor: (@user_id, @session_id) ->
         @session = @getInfo()
@@ -70,11 +84,17 @@ RaceSessionsController.prototype.show = () ->
     dispatcher = new WebSocketRails 'localhost:3000/websocket'
     channel = dispatcher.subscribe("race_session_#{$race_session_id}_positions")
 
+    updateLapAttributes = (user_id, session_id, lap_id) ->
+      lap = new Lap(user_id, session_id, lap_id)
+      $('span.race-sess-lap').text(lap.number())
+
+
     updateSessionAttributes = (data) ->
       # Update attributes on page
       $('span.race-sess-speed').text(Utility.roundTo(Utility.msToKmh(data.speed), 2))
       $('span.race-sess-rpm').text(Utility.roundTo(data.rpm, 2))
       $('span.race-sess-gear').text(Utility.gearMap(data.gear))
+
 
       toggleBinaryLabel($('span.race-sess-on-gas'), Utility.roundTo(data.on_gas, 2))
       toggleBinaryLabel($('span.race-sess-on-brake'), Utility.roundTo(data.on_brake, 2))
@@ -103,3 +123,4 @@ RaceSessionsController.prototype.show = () ->
       drawing.updatePosition(position_linear_scale_x(data.x + session_info.x_offset()), position_linear_scale_y(data.z + session_info.z_offset()))
 
       updateSessionAttributes(data)
+      updateLapAttributes($canvas.data('user'), $race_session_id, data.lap_id)
