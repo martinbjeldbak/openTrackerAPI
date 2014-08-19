@@ -1,3 +1,3 @@
 class LapSerializer < ActiveModel::Serializer
-  attributes :id, :number
+  attributes :id, :lap_nr
 end

@@ -10,6 +10,7 @@ class RaceSession < ActiveRecord::Base
   belongs_to :user
   belongs_to :track
   has_many :laps, dependent: :destroy
+  has_many :positions, through: :laps
   has_one :key, as: :keyable
   accepts_nested_attributes_for :key
 
@@ -24,7 +25,7 @@ class RaceSession < ActiveRecord::Base
   end
 
   def has_ended?
-    if ended_at != nil
+    if ended_at
       true
     elsif self.laps.count > 0 && self.laps.last.positions.count > 0 && (Time.now - self.laps.last.positions.last.created_at) > 15.minutes
       # Since 15 mins have gone since last position for this session, update ended_at
