@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery #with: :exception
 
   #before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_variants
 
   def index
   end
@@ -25,5 +26,11 @@ class ApplicationController < ActionController::Base
     authenticate_or_request_with_http_token do |token, options|
       sess.key.key == token
     end
+  end
+
+  private
+
+  def set_variants
+    request.variant = :openTracker if request.user_agent =~ /openTracker/
   end
 end
