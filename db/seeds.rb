@@ -16,7 +16,7 @@ Track.create(name: 'Imola', img_name: 'imola', img_width: 1543.89, img_height: 8
 Track.create(name: 'Magione', img_name: 'magione', img_height: 861.583, img_width: 342.88,
              x_offset: 187.289, z_offset: 444.422)
 Track.create(name: 'Monza', img_name: 'monza', img_height: 1575.82, img_width: 927.422,
-             x_offset: 232.866, z_offset: 1297.7, scale_factor: 1.4)
+             x_offset: 232.866, z_offset: 1297.7, scale_factor: 1.4, img_scale: 0.25)
 Track.create(name: 'Monza 1966', img_name: 'monza66', img_height: 1584.01, img_width: 934.647,
              x_offset: 230.455, z_offset: 1310.29, scale_factor: 1.4)
 Track.create(name: 'Mugello', img_name: 'mugello', img_height: 627.674, img_width: 1495.89,

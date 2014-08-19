@@ -28,7 +28,10 @@ class PositionsController < ApplicationController
   private
 
   def position_params
+    # lap time in ms
+    # performance meter ex -2.5
     params.require(:position).permit(:x, :y, :z, :speed, :rpm, :gear,
-                                     :on_gas, :on_brake, :on_clutch, :steer_rot)
+                                     :on_gas, :on_brake, :on_clutch, :steer_rot,
+                                     :lap_time, :performance_meter)
   end
 end

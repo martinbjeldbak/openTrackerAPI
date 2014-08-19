@@ -5,6 +5,9 @@ RaceSessionsController.prototype.show = () ->
     constructor: (@container) ->
       @lineFunction = d3.svg.line().x((d) -> d.x ).y((d) -> d.y).interpolate('linear')
       @data = new Array
+    clear: () ->
+      while(@data.length > 0)
+        @data.pop()
     addPosition: (x, y) ->
       @data.push {x: x, y: y}
       @container.select('#player_path').remove()
@@ -81,6 +84,8 @@ RaceSessionsController.prototype.show = () ->
       $('span.race-sess-speed').text(Utility.roundTo(Utility.msToKmh(data.speed), 2))
       $('span.race-sess-rpm').text(Utility.roundTo(data.rpm, 2))
       $('span.race-sess-gear').text(Utility.gearMap(data.gear))
+      $('span.race-sess-lap-time').text(Utility.format_ms(data.lap_time))
+      $('span.race-sess-performance-meter').text(Utility.roundTo(data.performance_meter, 2))
 
 
       toggleBinaryLabel($('span.race-sess-on-gas'), Utility.roundTo(data.on_gas, 2))

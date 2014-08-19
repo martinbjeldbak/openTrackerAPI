@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819185240) do
+ActiveRecord::Schema.define(version: 20140819190333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,19 +39,21 @@ ActiveRecord::Schema.define(version: 20140819185240) do
   end
 
   create_table "positions", force: true do |t|
-    t.float    "x",          null: false
-    t.float    "y",          null: false
-    t.float    "z",          null: false
-    t.float    "rpm",        null: false
-    t.float    "speed",      null: false
-    t.float    "steer_rot",  null: false
-    t.integer  "gear",       null: false
-    t.float    "on_gas",     null: false
-    t.float    "on_brake",   null: false
-    t.boolean  "on_clutch",  null: false
-    t.integer  "lap_id",     null: false
+    t.float    "x",                               null: false
+    t.float    "y",                               null: false
+    t.float    "z",                               null: false
+    t.float    "rpm",                             null: false
+    t.float    "speed",                           null: false
+    t.float    "steer_rot",                       null: false
+    t.integer  "gear",                            null: false
+    t.float    "on_gas",                          null: false
+    t.float    "on_brake",                        null: false
+    t.boolean  "on_clutch",                       null: false
+    t.integer  "lap_id",                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "lap_time",          default: -1
+    t.float    "performance_meter", default: 0.0
   end
 
   create_table "race_sessions", force: true do |t|

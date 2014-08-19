@@ -26,6 +26,14 @@
               #{Lap.human_attribute_name('lap')}:
               %span.race-sess-lap= @race_session.lap_count
           .race-sess-stat
+            %p.race-sess-current-lap-time
+              #{Position.human_attribute_name 'lap_time' }:
+              %span.race-sess-lap-time= @race_session.laps.last.positions.last.lap_time
+          .race-sess-stat
+            %p.race-sess-current-lap-time
+              #{Position.human_attribute_name 'performance_meter' }:
+              %span.race-sess-lap-time= @race_session.laps.last.positions.last.performance_meter
+          .race-sess-stat
             %p.race-sess-speed
               #{Position.human_attribute_name('speed')}:
               %span.race-sess-speed= @race_session.laps.last.positions.last.km_h.round(2)

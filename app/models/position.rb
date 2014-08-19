@@ -13,9 +13,9 @@ class Position < ActiveRecord::Base
     latest_pos = self.lap.positions.last
 
     if self == latest_pos
-      nil
+      self
     else
-      self.lap.positions[-1]
+      self.lap.positions[-2]
     end
   end
 
@@ -23,10 +23,13 @@ class Position < ActiveRecord::Base
     self.speed * 3.6
   end
 
+  def self.latest_position
+    self.lap.positions.last
+  end
+
   private
 
   def check_delta
-    # If update time has
-    #errors.add(:created_at, 'Updating too fast') if previous_position && (Time.now - previous_position.created_at) < 1.seconds
+    errors.add(:created_at, 'Updating too fast') if previous_position && (Time.now - previous_position.created_at) < 0.5.second
   end
 end
