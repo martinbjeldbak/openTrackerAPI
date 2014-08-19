@@ -39,6 +39,7 @@ class LapsController < ApplicationController
   private
 
   def lap_params
-    params.require(:lap).permit(:lap_nr)
+    # last_lap and best_lap are in ms, -1 means they're unset
+    params.require(:lap).permit(:lap_nr, :last_lap, :best_lap)
   end
 end

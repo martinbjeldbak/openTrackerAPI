@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809182106) do
+ActiveRecord::Schema.define(version: 20140819185240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,10 +30,12 @@ ActiveRecord::Schema.define(version: 20140809182106) do
   end
 
   create_table "laps", force: true do |t|
-    t.integer  "lap_nr",          null: false
-    t.integer  "race_session_id", null: false
+    t.integer  "lap_nr",                       null: false
+    t.integer  "race_session_id",              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "last_lap",        default: -1
+    t.integer  "best_lap",        default: -1
   end
 
   create_table "positions", force: true do |t|
