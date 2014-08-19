@@ -10,7 +10,7 @@ class RaceSession < ActiveRecord::Base
   belongs_to :user
   belongs_to :track
   has_many :laps, dependent: :destroy
-  has_one :key, as: :keyable, dependant: :destroy
+  has_one :key, as: :keyable
   accepts_nested_attributes_for :key
 
   after_create :add_key
