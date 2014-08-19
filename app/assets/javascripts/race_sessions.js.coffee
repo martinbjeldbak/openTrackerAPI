@@ -5,31 +5,22 @@ RaceSessionsController.prototype.show = () ->
     constructor: (@container) ->
       @lineFunction = d3.svg.line().x((d) -> d.x ).y((d) -> d.y).interpolate('linear')
       @data = new Array
-    updatePosition: (x, y) ->
+    addPosition: (x, y) ->
       @data.push {x: x, y: y}
       @container.select('#player_path').remove()
-      @container.append('path').attr('d', @lineFunction(@data)).style('stroke-width', 2)
+      @container.append('path').attr('d', @lineFunction(@data)).style('stroke-width', 3)
         .style('stroke', 'steelblue').attr('fill', 'none').attr('id', 'player_path')
+    setPath: (coordinates) ->
+      # Coordinates is an array arrays of x and y [[2,5], [2,6], [3,5]]
+      @data = new Array
+      for coordinate in coordinates
+        @addPosition(coordinate[0], coordinate[1])
     scale_x: (from_domain, to_domain) ->
       d3.scale.linear().domain(from_domain).range(to_domain)
     scale_y: (from_domain, to_domain) ->
       d3.scale.linear().domain(from_domain).range(to_domain)
 
   jQuery ->
-    class Lap
-      constructor: (@user_id, @session_id, @lap_id) ->
-        @lap = @getInfo(@user_id, @session_id, @lap_id)
-      getInfo: (user_id, session_id, lap_id) ->
-        info = {}
-        $.ajax
-          url: "/users/#{user_id}/race_sessions/#{session_id}/laps/#{lap_id}"
-          dataType: 'json'
-          async: false
-          success: (data) ->
-            info = data.lap
-        return info
-      number: -> @lap.number
-
     class SessionInfo
       constructor: (@user_id, @session_id) ->
         @session = @getInfo()
@@ -80,13 +71,9 @@ RaceSessionsController.prototype.show = () ->
     position_linear_scale_x = drawing.scale_x([0, session_info.ac_map_width()], [0, session_info.map_width()])
     position_linear_scale_y = drawing.scale_y([0, session_info.ac_map_height()], [0, session_info.map_height()])
 
-    # Subscribe to websocket info
-    dispatcher = new WebSocketRails 'localhost:3000/websocket'
-    channel = dispatcher.subscribe("race_session_#{$race_session_id}_positions")
-
-    updateLapAttributes = (user_id, session_id, lap_id) ->
-      lap = new Lap(user_id, session_id, lap_id)
-      $('span.race-sess-lap').text(lap.number())
+    updateLapAttributes = (data) ->
+      console.log(data)
+      $('span.race-sess-lap').text(data.lap_nr)
 
 
     updateSessionAttributes = (data) ->
@@ -117,10 +104,17 @@ RaceSessionsController.prototype.show = () ->
       else
         $elem.text('No')
 
+    # Subscribe to websocket info
+    dispatcher = new WebSocketRails 'localhost:3000/websocket'
+    positions_channel = dispatcher.subscribe("race_session_#{$race_session_id}_positions")
+    laps_channel = dispatcher.subscribe("race_session_#{$race_session_id}_laps")
+
     # When new position is created
-    channel.bind 'create', (data) ->
+    positions_channel.bind 'create', (data) ->
       # Update dot on the map
-      drawing.updatePosition(position_linear_scale_x(data.x + session_info.x_offset()), position_linear_scale_y(data.z + session_info.z_offset()))
+      drawing.addPosition(position_linear_scale_x(data.x + session_info.x_offset()), position_linear_scale_y(data.z + session_info.z_offset()))
 
       updateSessionAttributes(data)
-      updateLapAttributes($canvas.data('user'), $race_session_id, data.lap_id)
+
+    laps_channel.bind 'create', (data) ->
+      updateLapAttributes(data)

@@ -27,6 +27,7 @@ class LapsController < ApplicationController
     respond_to do |format|
       format.json do
         if lap.save
+          WebsocketRails["race_session_#{@race_session.id}_laps"].trigger(:create, lap)
           render json: lap, status: :created
         else
           render json: lap, status: :unprocessable_entity
