@@ -32,6 +32,8 @@ class RaceSession < ActiveRecord::Base
       self.ended_at = self.laps.last.positions.last.created_at
       self.save!
       true
+    elsif self.laps.empty? || (self.laps && self.laps.last.positions.empty?)
+      true
     else
       false
     end
