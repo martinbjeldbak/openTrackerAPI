@@ -12,7 +12,7 @@ class RaceSessionsController < ApplicationController
       if @race_sessions
         format.json { render json: @race_sessions, status: 200 }
         format.html {
-          raise CanCan::AccessDenied.new("Not authorized!", :view, RaceSession) if cannot? :read, RaceSession
+          raise CanCan::AccessDenied.new('Not authorized!', :view, RaceSession) if cannot? :read, RaceSession
         }
       else
         format.json { render json: { errors: @race_sessions.errors.full_messages }, status: 404 }
@@ -26,7 +26,12 @@ class RaceSessionsController < ApplicationController
       if @race_session
         format.json { render json: @race_session, methods: :key, status: 200 }
         format.html do
-          raise CanCan::AccessDenied.new("Not authorized!", :view, RaceSession) if cannot? :read, RaceSession
+          raise CanCan::AccessDenied.new('Not authorized!', :view, RaceSession) if cannot? :read, RaceSession
+          if @race_session.has_ended?
+            flash[:warning] = t('views.race_sessions.show.flash.notice.has_ended')
+          else
+            flash[:success] = t('views.race_sessions.show.flash.success.is_live')
+          end
         end
       else
         format.json ( render json: { errors: @race_session.errors.full_messages}, status: 404 )

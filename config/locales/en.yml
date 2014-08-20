@@ -82,6 +82,14 @@ en:
     silverstone-international: Silverstone-International
     vallelunga: Vallelunga
     vallelunga-club: Vallelunga-club
+  views:
+    race_sessions:
+      show:
+        flash:
+          notice:
+            has_ended: This race session has ended. Stats shown are latest known.
+          success:
+            is_live: This race session is currently live!
   activerecord:
     attributes:
       race_session:
