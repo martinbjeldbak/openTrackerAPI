@@ -20,11 +20,11 @@ Track.create(name: 'Monza', img_name: 'monza', img_height: 1575.82, img_width: 9
 Track.create(name: 'Monza 1966', img_name: 'monza66', img_height: 1584.01, img_width: 934.647,
              x_offset: 230.455, z_offset: 1310.29, scale_factor: 1.4)
 Track.create(name: 'Mugello', img_name: 'mugello', img_height: 627.674, img_width: 1495.89,
-             x_offset: 796.459, z_offset: 314.943)
+             x_offset: 796.459, z_offset: 314.943, img_scale: 0.5)
 Track.create(name: 'Nurburgring', img_name: 'nurburgring', img_height: 1567.66, img_width: 601.503,
              x_offset: 423.288, z_offset: 1037.29, scale_factor: 1.2, img_scale: 0.4)
 Track.create(name: 'Silverstone', img_name: 'silverstone', img_height: 1466.72, img_width: 876.844,
-             x_offset: 530.08, z_offset: 88.431, scale_factor: 1.2)
+             x_offset: 530.08, z_offset: 88.431, scale_factor: 1.2, img_scale: 0.5)
 Track.create(name: 'Silverstone-International', img_name: 'silverstone-international', img_height: 1040.5, img_width: 961.299,
              x_offset: 528.261, z_offset: 167.886)
 Track.create(name: 'Vallelunga', img_name: 'vallelunga', img_height: 514.88, img_width: 1277.07,
