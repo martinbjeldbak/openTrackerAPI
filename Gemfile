@@ -44,6 +44,8 @@ gem 'd3-rails'
 
 gem 'paloma'
 
+gem 'kaminari'
+
 #gem 'activeadmin', github: 'gregbell/active_admin'
 
 group :doc do
