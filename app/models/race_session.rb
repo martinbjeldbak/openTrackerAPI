@@ -20,12 +20,24 @@ class RaceSession < ActiveRecord::Base
 
   after_create :add_key
 
+  def fastest_lap
+    fastest = laps.first
+    self.laps.each do |lap|
+      fastest = lap if lap.best_lap > fastest.best_lap
+    end
+    fastest
+  end
+
   def add_key
     self.key = Key.new
   end
 
   def lap_count
     self.laps.count
+  end
+
+  def is_live?
+    !has_ended?
   end
 
   def has_ended?

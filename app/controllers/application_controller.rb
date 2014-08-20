@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   check_authorization unless: :devise_controller?
   skip_authorization_check only: [:index]
   # Prevent CSRF attacks by raising an exception.

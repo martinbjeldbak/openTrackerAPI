@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
     provider.blank?
   end
 
+  def is_racing?
+    race_sessions.select(&:is_live?).any?
+  end
+
   def self.find_or_create_for_oauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider

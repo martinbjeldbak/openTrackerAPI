@@ -1,4 +1,35 @@
-#race-sess-canvas{
+#race-sess-canvas {
   margin-left: auto;
   margin-right: auto;
+}
+
+.race-session-panel.even {
+  background: #f6f6f6;
+}
+
+.race-session-panel {
+  min-height: 100px;
+
+  .race-session-image {
+    float: left;
+    width: 24%;
+    max-height: 100px;
+    text-align: center;
+
+    img {
+      padding: 2%;
+      max-height: 100%;
+    }
+  }
+
+  .race-session-info {
+    float: right;
+    width: 74%;
+
+    h1 {
+      color: #333;
+      font-size: 26px;
+      font-weight: normal;
+    }
+  }
 }

@@ -13,6 +13,10 @@ RaceSessionsController.prototype.show = () ->
       @container.select('#player_path').remove()
       @container.append('path').attr('d', @lineFunction(@data)).style('stroke-width', 3)
         .style('stroke', 'steelblue').attr('fill', 'none').attr('id', 'player_path')
+      @container.select('circle').remove()
+
+      @container.append('circle').attr('cx', x).attr('cy', y).attr('r', 3).style('fill', 'red')
+
     setPath: (coordinates) ->
       # Coordinates is an array arrays of x and y [[2,5], [2,6], [3,5]]
       @data = new Array
@@ -87,7 +91,6 @@ RaceSessionsController.prototype.show = () ->
       $('span.race-sess-lap-time').text(Utility.format_ms(data.lap_time))
       $('span.race-sess-performance-meter').text(Utility.roundTo(data.performance_meter, 2))
 
-
       toggleBinaryLabel($('span.race-sess-on-gas'), Utility.roundTo(data.on_gas, 2))
       toggleBinaryLabel($('span.race-sess-on-brake'), Utility.roundTo(data.on_brake, 2))
 
@@ -123,3 +126,4 @@ RaceSessionsController.prototype.show = () ->
 
     laps_channel.bind 'create', (data) ->
       updateLapAttributes(data)
+      drawing.clear()

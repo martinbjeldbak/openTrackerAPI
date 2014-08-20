@@ -20,6 +20,6 @@ class @Utility
     hrs = (s - mins) / 60
 
     if hrs > 0
-      return hrs + ':' + mins + ':' + secs + '.' + ms
+      "#{hrs}:#{mins}:#{secs}.#{ms}"
     else
-      mins + ':' + secs + '.' + ms
+      "#{mins}:#{secs}.#{ms}"

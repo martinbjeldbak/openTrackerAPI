@@ -1,4 +1,5 @@
 class RaceSessionsController < ApplicationController
+  include TracksHelper
   load_resource :user
   load_resource through: :user
   skip_authorization_check
@@ -6,7 +7,7 @@ class RaceSessionsController < ApplicationController
   before_filter ->(c) { c.ensure_session_auth @race_session}
 
   def index
-    @race_sessions = RaceSession.where(user: current_user)
+    @race_sessions = RaceSession.accessible_by(current_ability).order('created_at DESC').page params[:page]
 
     respond_to do |format|
       if @race_sessions

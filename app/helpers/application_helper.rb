@@ -7,4 +7,20 @@ module ApplicationHelper
   def fapper_twitter_path
     'https://twitter.com/fapper'
   end
+
+  def format_ms(s)
+    ms = s % 1000
+    s = (s - ms) / 1000
+    secs = s % 60
+    s = (s - secs) / 60
+    mins = s % 60
+    hrs = (s - mins) / 60
+
+    if hrs > 0
+      "#{hrs}:#{mins}:#{secs}.#{ms}"
+    else
+      "#{mins}:#{secs}.#{ms}"
+    end
+
+  end
 end
