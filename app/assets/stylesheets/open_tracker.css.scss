@@ -1,3 +1,33 @@
+aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+p {
+  color: #4c4c4c;
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 1.75em;
+}
+
+img {
+  vertical-align: middle;
+  border: 0;
+}
+
+h1 {
+  text-align: center;
+  line-height: 1.2;
+}
+
+h2 {
+  line-height: 1.2;
+  text-align: center;
+}
+
 div {
   display: block;
 }
@@ -7,27 +37,148 @@ a {
   text-decoration: none;
 }
 
+.btn-primary {
+  background: #f04934;
+  border: none;
+  color: #fff;
+  position: relative;
+  top: 0;
+  -webkit-box-shadow: 0 3px 0 0 #af331e;
+  box-shadow: 0 3px 0 0 #af331e;
+  -webkit-font-smoothing: antialiased;
+}
+
+.stand-space {
+  padding: 3rem 0;
+}
+
+.navbar {
+  margin-bottom: 0px;
+  border-radius: 0px;
+}
+
+.main {
+  background-color: #fff;
+}
+
+@mixin left-right-text {
+  h1 {
+    color: #333;
+    font-size: 56px;
+    font-weight: bold;
+  }
+
+  h2 {
+    color: #1a1a1a;
+    font-size: 18px;
+    font-weight: normal;
+    padding: 20px;
+  }
+
+  h3 {
+    color: #333;
+    font-size: 26px;
+    font-weight: normal;
+    text-align: left;
+  }
+
+  p {
+    padding: 20px 0 30px 0;
+  }
+}
+
+#live-sessions {
+  padding-top: 80px;
+  overflow: visible;
+
+  h4 {
+    color: #333;
+    font-size: 26px;
+    font-weight: normal;
+  }
+
+  @include left-right-text;
+
+  h1 {
+    padding-bottom: 20px;
+  }
+
+  p {
+    color: #1a1a1a;
+  }
+
+  .session-list {
+    float: left;
+    width: 50%;
+  }
+
+  .session-text {
+    float: right;
+    width: 40%;
+  }
+}
+
+#download {
+  padding-top: 80px;
+  background: #f6f6f6;
+  overflow: visible;
+
+  @include left-right-text;
+
+  .instructions {
+    float: left;
+    width: 40%;
+  }
+
+  .image {
+    float: right;
+    width: 58%;
+
+    img {
+      max-width: 100%;
+      position: relative;
+      bottom: -35px;
+      right:-2px;
+    }
+  }
+}
+
+.content {
+  min-width: 640px;
+  clear: both;
+
+  section {
+    width: 84%;
+    max-width: 1280px;
+    min-width: 640px;
+    margin: 0 auto;
+
+    article {
+      max-width: 960px;
+      min-width: 640px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+}
+
 footer {
   position: relative;
-  margin-top: 40px;
   padding: {
     bottom: 20px;
     top: 20px;
   }
   font-size: 12px;
+  color: white;
   line-height: 1.5;
-  color: #777;
-  border-top: 1px solid #eee;
+  background-color: #252528;
 
   li {
     display: inline-block;
     line-height: 16pt;
   }
-}
-
-img.profile-picture {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-  border-radius: 7px;
 }

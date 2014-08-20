@@ -14,6 +14,10 @@ class RaceSession < ActiveRecord::Base
   has_one :key, as: :keyable
   accepts_nested_attributes_for :key
 
+  def self.live
+    RaceSession.all.select{|sess| !sess.has_ended?}
+  end
+
   after_create :add_key
 
   def add_key

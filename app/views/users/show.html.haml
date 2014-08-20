@@ -1,1 +1,8 @@
-=@user.inspect
+.row
+  .col-md-1
+    =image_tag @user.image, class: 'user-image'
+  .col-md-6
+    %div
+      = link_to @user.name, steam_profile_path(@user)
+    %div
+      Sessions: #{link_to @user.race_sessions.count, user_race_sessions_path(@user)}

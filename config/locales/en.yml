@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  time:
+    formats:
+      nodate: '%H:%M'
   cars:
     abarth500: Abarth 500 EsseEsse
     abarth500_s1: Abarth 500 EsseEsse Step1
