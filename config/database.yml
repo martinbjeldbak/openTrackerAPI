@@ -22,7 +22,10 @@ test:
   password: <%= Rails.application.secrets.db_password %>
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: postgresql
+  database: opentracker_test
+  encoding: unicode
   pool: 5
   timeout: 5000
+  username: opentracker
+  password: <%= Rails.application.secrets.db_password %>
