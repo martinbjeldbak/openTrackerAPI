@@ -4,7 +4,7 @@ class RaceSession < ActiveRecord::Base
   validates :ac_version, inclusion: { in: %w(1.0),
                                    message: "%{value} is not a valid AC version"}
 
-  validates :ot_version, inclusion: { in: %w(0.1),
+  validates :ot_version, inclusion: { in: %w(1.0),
                                    message: "%{value} is not a valid OpenTracker version"}
 
   belongs_to :user
