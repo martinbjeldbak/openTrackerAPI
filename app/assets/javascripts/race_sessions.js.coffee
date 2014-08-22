@@ -113,7 +113,8 @@ RaceSessionsController.prototype.show = () ->
         $elem.text('No')
 
     # Subscribe to websocket info
-    dispatcher = new WebSocketRails 'localhost:3000/websocket'
+    host = location.origin.replace(/^http:\/\//, '')
+    dispatcher = new WebSocketRails "#{host}/websocket"
     positions_channel = dispatcher.subscribe("race_session_#{$race_session_id}_positions")
     laps_channel = dispatcher.subscribe("race_session_#{$race_session_id}_laps")
 
