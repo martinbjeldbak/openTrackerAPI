@@ -6,6 +6,15 @@ GIT
     eventmachine (1.0.3)
 
 GIT
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: c3bc4af79df2f3f51500a38d8a84aa682f9ad009
+  branch: master
+  specs:
+    simple_form (3.1.0.rc2)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
+
+GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 1d93c5a77049b3d21d17c847ad0531d7714fa229
   branch: bootstrap3
@@ -257,6 +266,7 @@ DEPENDENCIES
   rspec-rails (~> 3.0.0.beta)
   sass-rails (~> 4.0.2)
   sdoc
+  simple_form (~> 3.1.0.rc2)!
   turbolinks
   twitter-bootstrap-rails!
   tzinfo-data

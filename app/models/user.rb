@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   before_save :ensure_authenticaton_token
 
+  validates :name, length: { minimum: 1 }
+
   def email_required?
     provider.blank?
   end

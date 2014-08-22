@@ -13,10 +13,13 @@ gem 'coffee-rails', '~> 4.0.1'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 #gem 'therubyracer', platforms: :ruby
 
-gem 'bootstrap-sass', '~> 3.1.1'
+
 gem 'sass-rails', '~> 4.0.2' # Use SCSS for stylesheets
+gem 'bootstrap-sass', '~> 3.1.1'
 gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'
 gem 'autoprefixer-rails'
+
+gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 'master'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

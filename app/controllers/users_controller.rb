@@ -10,6 +10,18 @@ class UsersController < ApplicationController
     respond_with @users
   end
 
+  def edit
+
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to @user, notice: 'Updated'
+    else
+      render action: :edit
+    end
+  end
+
   def show
     respond_to do |format|
       format.html do
@@ -26,5 +38,11 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.json { render json: @users }
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:time_zone, :name)
   end
 end

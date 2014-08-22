@@ -10,7 +10,7 @@
     = nav_bar brand: 'OpenTracker', brand_link: root_path, responsive: true do
       = menu_group pull: :right do
         - if current_user
-          = menu_item 'Your sessions', user_race_sessions_path(current_user)
+          = menu_item 'Your Sessions', user_race_sessions_path(current_user)
           = menu_item current_user.name, user_path(current_user)
           = menu_item image_tag('logout_small.png'), destroy_user_session_path, method: :delete
         - else
