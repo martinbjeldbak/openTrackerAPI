@@ -10,8 +10,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       session['devise.steam_data'] = request.env['omniauth.auth'].except('extra') # throw away 'extra' hash, it causes
       # cookie overflow exception
-
-      redirect_to new_user_registration_url
+      redirect_to root_url
     end
   end
 end

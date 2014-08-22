@@ -24,7 +24,9 @@ class User < ActiveRecord::Base
   end
 
   def self.find_or_create_for_oauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
+    # TODO: Set  timezone here, as we get country information, see
+    # https://github.com/reu/omniauth-steam for extra hash
+    where(auth.slice(:provider, :uid).permit(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.password = Devise.friendly_token[0,20]
