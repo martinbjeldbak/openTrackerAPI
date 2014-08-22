@@ -5,7 +5,8 @@ class Position < ActiveRecord::Base
                                        less_than_or_equal_to: 1.0}
   validates :on_gas, numericality: { greater_than_or_equal_to: 0.0,
                                        less_than_or_equal_to: 1.0}
-  validate :check_delta
+  #validate :check_delta
+  validate :latest
 
   belongs_to :lap
 
@@ -28,6 +29,10 @@ class Position < ActiveRecord::Base
   end
 
   private
+
+  def latest
+    errors.add(:lap_time, 'Lap time is not newer') if previous_position && lap_time < previous_position.lap_time
+  end
 
   def check_delta
     #errors.add(:created_at, 'Updating too fast') if previous_position && (Time.now - previous_position.created_at) < 0.5.second
