@@ -49,6 +49,8 @@ gem 'paloma'
 
 gem 'kaminari'
 
+gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
+
 #gem 'activeadmin', github: 'gregbell/active_admin'
 
 group :doc do
@@ -62,17 +64,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'nokogiri', '>= 1.6.1'
   #gem 'capybara'
-  gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
 end
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
