@@ -19,7 +19,7 @@ class @Utility
     mins = s % 60
     hrs = (s - mins) / 60
 
-    str = "#{mins}:#{secs}.#{ms.charAt(0)}"
+    str = "#{mins}:#{secs}.#{ms.toString().charAt(0)}"
 
     if hrs > 0
       "#{hrs}:" + str
