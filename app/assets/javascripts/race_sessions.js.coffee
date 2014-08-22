@@ -4,18 +4,20 @@ RaceSessionsController.prototype.show = () ->
   class Map
     constructor: (@container) ->
       @lineFunction = d3.svg.line().x((d) -> d.x ).y((d) -> d.y).interpolate('linear')
+      @container.append('path').style('stroke-width', 3)
+      .style('stroke', 'steelblue').attr('fill', 'none').attr('id', 'player_path')
+      @container.append('circle').attr('cx', -10).attr('cy', -10).attr('r', 4).style('fill', 'red').attr('opacity', 1)
+
       @data = new Array
     clear: () ->
       while(@data.length > 0)
         @data.pop()
     addPosition: (x, y) ->
       @data.push {x: x, y: y}
-      @container.select('#player_path').remove()
-      @container.append('path').attr('d', @lineFunction(@data)).style('stroke-width', 3)
-        .style('stroke', 'steelblue').attr('fill', 'none').attr('id', 'player_path')
-      @container.select('circle').remove()
+      @container.select('path').transition().attr('d', @lineFunction(@data))
+      @container.select('circle').transition().attr('cx', x).attr('cy', y)
 
-      @container.append('circle').attr('cx', x).attr('cy', y).attr('r', 3).style('fill', 'red')
+
 
     setPath: (coordinates) ->
       # Coordinates is an array arrays of x and y [[2,5], [2,6], [3,5]]
