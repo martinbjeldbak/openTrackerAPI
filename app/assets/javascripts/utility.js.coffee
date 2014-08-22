@@ -19,7 +19,9 @@ class @Utility
     mins = s % 60
     hrs = (s - mins) / 60
 
+    str = "#{mins}:#{secs}.#{ms.charAt(0)}"
+
     if hrs > 0
-      "#{hrs}:#{mins}:#{secs}.#{ms.charAt(0)}"
+      "#{hrs}:" + str
     else
-      "#{mins}:#{secs}.#{ms}"
+      str
