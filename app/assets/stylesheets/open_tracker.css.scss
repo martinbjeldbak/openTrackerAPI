@@ -120,23 +120,6 @@ a {
   overflow: visible;
 
   @include left-right-text;
-
-  .instructions {
-    float: left;
-    width: 40%;
-  }
-
-  .image {
-    float: right;
-    width: 58%;
-
-    img {
-      max-width: 100%;
-      position: relative;
-      bottom: -35px;
-      right:-2px;
-    }
-  }
 }
 
 .container-full {

@@ -16,6 +16,10 @@ class PositionsController < ApplicationController
 
     respond_to do |format|
       if position.save
+        if @lap.positions.count > 2
+          @lap.positions[0].destroy
+        end
+
         WebsocketRails["race_session_#{@race_session.id}_positions"].trigger(:create, position)
         format.json { render json: position, status: :created }
       else
