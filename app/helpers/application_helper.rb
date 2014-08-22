@@ -21,6 +21,9 @@ module ApplicationHelper
     else
       "#{mins}:#{secs}.#{ms}"
     end
+  end
 
+  def title(page_title)
+    content_for(:title) { page_title }
   end
 end

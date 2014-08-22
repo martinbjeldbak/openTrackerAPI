@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    %title OpenTracker
+    %title OTracker #{yield(:title)}
     %meta{charset: 'utf-8'}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
@@ -10,8 +10,10 @@
     = nav_bar brand: 'OpenTracker', brand_link: root_path, responsive: true do
       = menu_group pull: :right do
         - if current_user
-          = menu_item 'Your Sessions', user_race_sessions_path(current_user)
-          = menu_item current_user.name, user_path(current_user)
+          = menu_item 'sessions', user_race_sessions_path(current_user)
+          = drop_down 'account' do
+            = menu_item 'account info', user_path(current_user)
+            = menu_item 'settings', edit_user_path(current_user)
           = menu_item image_tag('logout_small.png'), destroy_user_session_path, method: :delete
         - else
           = menu_item image_tag('http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_small.png'), user_omniauth_authorize_path(:steam)
