@@ -52,6 +52,8 @@ gem 'kaminari'
 
 gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
 
+gem 'rails_12factor'
+
 #gem 'activeadmin', github: 'gregbell/active_admin'
 
 group :doc do
