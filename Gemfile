@@ -62,6 +62,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'nokogiri', '>= 1.6.1'
   #gem 'capybara'
+  gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
 end
 
 # Use ActiveModel has_secure_password

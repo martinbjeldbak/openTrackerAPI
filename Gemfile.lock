@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/alexpeattie/heroku_secrets.git
+  revision: 717af8e0acf399bc88d2c8c1a7e230023942af0f
+  specs:
+    heroku_secrets (0.0.2)
+
+GIT
   remote: git://github.com/eventmachine/eventmachine.git
   revision: b7f2b34d6b8d04aa8fdb017059833b64c602d819
   branch: master
@@ -254,6 +260,7 @@ DEPENDENCIES
   eventmachine!
   factory_girl_rails (~> 4.0)
   haml-rails
+  heroku_secrets!
   jbuilder (~> 1.2)
   jquery-rails
   kaminari
