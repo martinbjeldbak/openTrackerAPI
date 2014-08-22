@@ -16,6 +16,6 @@ class CreateTracks < ActiveRecord::Migration
 
     remove_column :race_sessions, :track, :string
     remove_column :race_sessions, :track_config, :string
-    add_column :race_sessions, :track_id, :integer, references: :tracks
+    add_column :race_sessions, :track_id, :integer, references: :tracks, null: false
   end
 end
