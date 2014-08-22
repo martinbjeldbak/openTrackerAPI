@@ -17,8 +17,8 @@
           = menu_item image_tag('logout_small.png'), destroy_user_session_path, method: :delete
         - else
           = menu_item image_tag('http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_small.png'), user_omniauth_authorize_path(:steam)
-    .container-fluid.container-full.main
-      = bootstrap_flash
+    = bootstrap_flash
+    .ot-page
       = yield
   %footer
     .container

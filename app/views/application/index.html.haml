@@ -1,27 +1,31 @@
-.row#download.content
-  %section
-    %article
-      %header
-        %h1 Real Time Assetto Corsa Tracking
-        %h2 See where you and your friends are on track, in real time
-      %aside.image
-        = image_tag('logout_small.png')
-      %aside.instructions.stand-space
-        %h3 Get started
-        %p First, login on this site to create a new profile, then download the OpenTracker Assetto Corsa plugin by clicking on the link below and placing it in the #{content_tag :code, 'openTracker-1.x' } folder in the Assetto Corsa plugin directory at #{content_tag :code, '<assettocorsa>/apps/python'}. If in doubt, please tweet me at #{link_to '@fapper', fapper_twitter_path}, and I will do my best to help.
-        = button_to 'Download OpenTracker plugin', latest_ot_release_path, method: :get, class: 'btn btn-large btn-primary'
-.row#live-sessions.content
-  %section
-    %article
-      %header
-        %h1 Currently live drivers
-      %aside.session-text
-        %h4 Go on, click on a driver
-        %p With the plugin loaded, every time you start racing, a session is created, allowing you to visit this site and view session stats.
-      %aside.session-list
-        - if RaceSession.live.count > 0
-          %ul.list-group
-            - RaceSession.live.shuffle[0..5].each do |sess|
-              %li.list-group-item #{link_to sess.driver, user_race_session_path(sess.user, sess)} is racing on #{sess.track.name}, started #{l sess.created_at, format: :nodate} UTC
-        - else
-          No live race sessions :(
+%section.download
+  .container
+    %h1 Real Time Assetto Corsa Tracking
+    %h2 See where you and your friends are on track, in real time
+    .row
+      .col-md-5.col-sm-5
+        .download-inner
+          %h3 Get started
+          %p First, login on this site to create a new profile, then download the OpenTracker Assetto Corsa plugin by clicking on the link below and placing it in the #{content_tag :code, 'openTracker-1.x' } folder in the Assetto Corsa plugin directory at #{content_tag :code, '<assettocorsa>/apps/python'}. If in doubt, please tweet me at #{link_to '@fapper', fapper_twitter_path}, and I will do my best to help.
+          = button_to 'Download OpenTracker plugin', latest_ot_release_path, method: :get, class: 'btn btn-large btn-primary'
+      .col-md-7.col-sm-7
+        .stand-space
+          = video_tag 'example-usage.mp4', autoplay: :autoplay, loop: true, width: '100%'
+
+%section.live-sessions
+  .container
+    %h1 Currently live drivers
+    .row
+      .col-md-1.col-sm-1
+      .col-md-6.col-sm-6
+        .session-list
+          - if RaceSession.live.count > 0
+            %ul.list-group
+              - RaceSession.live.shuffle[0..5].each do |sess|
+                %li.list-group-item #{link_to sess.driver, user_race_session_path(sess.user, sess)} is racing on #{sess.track.name}, started #{l sess.created_at, format: :nodate}
+          - else
+            No live race sessions :(
+      .col-md-5.col-sm-5
+        .live-sessions-inner
+          %h4 Go on, click on a driver
+          %p With the plugin loaded, every time you start racing, a session is created, allowing you to visit this site and view session stats.

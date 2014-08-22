@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        flash[:success] = "#{@user.name} is currently racing" if @user.is_racing?
+        flash[:success] = "#{@user.name} is currently racing in session #{@user.live_sessions.first}" if @user.is_racing?
       end
       format.json { render json: @user }
     end

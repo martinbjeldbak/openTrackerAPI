@@ -1,6 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require twitter/bootstrap/dropdown
+#= require twitter/bootstrap/alert
 #= require websocket_rails/main
 #= require d3
 #= require paloma

@@ -48,17 +48,16 @@ a {
   -webkit-font-smoothing: antialiased;
 }
 
+
+
 .stand-space {
-  padding: 3rem 0;
+  position: absolute;
+  padding: 2rem 0;
 }
 
 .navbar {
   margin-bottom: 0px;
   border-radius: 0px;
-}
-
-.main {
-  background-color: #fff;
 }
 
 @mixin left-right-text {
@@ -87,9 +86,15 @@ a {
   }
 }
 
-#live-sessions {
+.download-inner {
+  text-align: left;
+  padding: 30px 0 20px 100px;
+}
+
+.live-sessions {
   padding-top: 80px;
   overflow: visible;
+  min-height: 600px;
 
   h4 {
     color: #333;
@@ -101,24 +106,15 @@ a {
 
   h1 {
     padding-bottom: 20px;
+    padding-top: 20px;
   }
 
   p {
     color: #1a1a1a;
   }
-
-  .session-list {
-    float: left;
-    width: 50%;
-  }
-
-  .session-text {
-    float: right;
-    width: 40%;
-  }
 }
 
-#download {
+.download {
   padding-top: 80px;
   background: #f6f6f6;
   overflow: visible;
@@ -139,24 +135,6 @@ a {
       position: relative;
       bottom: -35px;
       right:-2px;
-    }
-  }
-}
-
-.content {
-  min-width: 640px;
-  clear: both;
-
-  section {
-    width: 84%;
-    max-width: 1280px;
-    min-width: 640px;
-    margin: 0 auto;
-
-    article {
-      max-width: 960px;
-      min-width: 640px;
-      margin: 0 auto;
     }
   }
 }

@@ -16,7 +16,11 @@ class User < ActiveRecord::Base
   end
 
   def is_racing?
-    race_sessions.select(&:is_live?).any?
+    live_sessions.any?
+  end
+
+  def live_sessions
+    race_sessions.select(&:is_live?)
   end
 
   def self.find_or_create_for_oauth(auth)
