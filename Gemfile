@@ -44,7 +44,7 @@ gem 'puma'
 
 gem 'active_model_serializers', '~> 0.9.0.alpha1'
 
-gem 'rack-google-analytics'
+gem 'google-analytics-turbolinks'
 
 gem 'd3-rails'
 
