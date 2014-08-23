@@ -26,13 +26,29 @@ class User < ActiveRecord::Base
   def self.find_or_create_for_oauth(auth)
     # TODO: Set  timezone here, as we get country information, see
     # https://github.com/reu/omniauth-steam for extra hash
-    where(auth.slice(:provider, :uid).permit(:provider, :uid)).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
+
+    usrs = where(auth.slice('provider', 'uid'))
+
+    if usrs.empty?
+      user = User.new
+      user.provider = auth['provider']
+      user.uid = auth['uid']
       user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name
-      user.image = auth.info.image
+      user.name = auth['info']['name']
+      user.image = auth['info']['image']
+      user.save
+      user
+    else
+      usrs.first
     end
+
+    #where(auth.slice(:provider, :uid)).first_or_create do |user|
+    #  user.provider = auth.provider
+    #  user.uid = auth.uid
+    #  user.password = Devise.friendly_token[0,20]
+    #  user.name = auth.info.name
+    #  user.image = auth.info.image
+    #end
   end
 
   def self.search(search)

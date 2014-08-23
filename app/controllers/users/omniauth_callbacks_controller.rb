@@ -2,7 +2,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_filter  :verify_authenticity_token
 
   def steam
-    @user = User.find_or_create_for_oauth(request.env['omniauth.auth'])
+    @user = User.find_or_create_for_oauth(request.env['omniauth.auth'].to_hash)
 
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
