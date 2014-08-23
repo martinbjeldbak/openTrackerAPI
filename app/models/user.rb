@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('email = ? OR name = ? OR uid = ?', search, search, search)
+      where('uid = ?', search)
     else
       all
     end
