@@ -1,7 +1,7 @@
 .row
   .col-md-12{'text-align' => 'center'}
     %div#race-sess-canvas{data: {user: @race_session.user.id, 'race-session' => @race_session.id}}
-      %svg{preserveAspectRatio: "xMidYMin"}
+      %svg{preserveAspectRatio: "xMidYMin", id: 'race-session-svg'}
 .row
   .col-md-8
   .col-md-4
