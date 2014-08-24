@@ -1,6 +1,6 @@
 module ApplicationHelper
   def latest_ot_release_path
-    "https://github.com/fapper/openTracker/raw/master/openTracker-1.0.zip"
+    "https://github.com/fapper/openTracker/raw/master/openTracker-1.0.1.zip"
   end
 
   def fapper_twitter_path
