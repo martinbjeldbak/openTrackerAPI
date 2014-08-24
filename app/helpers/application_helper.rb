@@ -16,9 +16,9 @@ module ApplicationHelper
     hrs = (s - mins) / 60
 
     if hrs > 0
-      "#{hrs}:#{mins}:#{secs}.#{ms}"
+      "#{hrs}:#{mins}:#{secs}.#{ms.to_s[0]}"
     else
-      "#{mins}:#{secs}.#{ms}"
+      "#{mins}:#{secs}.#{ms.to_s[0]}"
     end
   end
 

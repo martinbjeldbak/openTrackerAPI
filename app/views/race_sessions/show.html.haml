@@ -28,7 +28,7 @@
           .race-sess-stat
             %p.race-sess-current-lap-time
               #{Position.human_attribute_name 'lap_time' }:
-              %span.race-sess-lap-time= @race_session.laps.last.positions.last.lap_time
+              %span.race-sess-lap-time= format_ms @race_session.laps.last.positions.last.lap_time
           .race-sess-stat
             %p.race-sess-current-lap-time
               #{Position.human_attribute_name 'performance_meter' }:
