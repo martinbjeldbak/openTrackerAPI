@@ -50,7 +50,7 @@ class RaceSessionsController < ApplicationController
         if track && session.save
           format.json { render json: session, status: :created }
         else
-          format.json { render json: session }
+          format.json { render json: {errors: session.errors.full_messages }, status: 422 }
         end
       end
   end
@@ -61,7 +61,7 @@ class RaceSessionsController < ApplicationController
       if @race_session.update!(race_session_params)
         format.json { render json: @race_session }
       else
-        format.json { render json: @race_session.errors, status:  :unprocessable_entity }
+        format.json { render json: {errors: @race_session.errors.full_messages}, status: 422 }
       end
     end
   end
