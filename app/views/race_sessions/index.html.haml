@@ -3,13 +3,14 @@
     .col-md-3.race-session-image
       = image_tag(track_img_path(sess.track), class: 'img-responsive')#, track_path(sess.track)
     .col-md-9.race-session-info
+      %h4 Session at #{sess.track.name}
       %p
         Status:
         - if sess.has_ended?
           %span.label.label-default Ended
         - else
           %span.label.label-success Live!
-      %p Best lap: #{format_ms sess.fastest_lap.best_lap}
+      %p Best lap: #{sess.fastest_lap.best_lap > 0 ? format_ms(sess.fastest_lap.best_lap) : 'None set'}
       %p
         Started racing:
         %span= l sess.created_at, format: :short
