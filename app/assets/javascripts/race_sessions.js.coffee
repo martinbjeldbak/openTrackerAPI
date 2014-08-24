@@ -16,9 +16,6 @@ RaceSessionsController.prototype.show = () ->
       @data.push {x: x, y: y}
       @container.select('path').transition().attr('d', @lineFunction(@data))
       @container.select('circle').transition().attr('cx', x).attr('cy', y)
-
-
-
     setPath: (coordinates) ->
       # Coordinates is an array arrays of x and y [[2,5], [2,6], [3,5]]
       @data = new Array
@@ -69,7 +66,6 @@ RaceSessionsController.prototype.show = () ->
 
     session_info = new SessionInfo $canvas.data('user'), $canvas.data('race-session')
 
-
     $canvas.width(session_info.map_width()).height(session_info.map_height())
 
     $race_session_id = $canvas.data('race-session')
@@ -91,7 +87,7 @@ RaceSessionsController.prototype.show = () ->
       $('span.race-sess-rpm').text(Utility.roundTo(data.rpm, 2))
       $('span.race-sess-gear').text(Utility.gearMap(data.gear))
       $('span.race-sess-lap-time').text(Utility.format_ms(data.lap_time))
-      $('span.race-sess-performance-meter').text(Utility.roundTo(data.performance_meter, 2))
+      #$('span.race-sess-performance-meter').text(Utility.roundTo(data.performance_meter, 2))
 
       toggleBinaryLabel($('span.race-sess-on-gas'), Utility.roundTo(data.on_gas, 2))
       toggleBinaryLabel($('span.race-sess-on-brake'), Utility.roundTo(data.on_brake, 2))
