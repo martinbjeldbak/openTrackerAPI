@@ -10,11 +10,11 @@
     = nav_bar brand: 'OpenTracker', brand_link: root_path, responsive: true do
       = menu_group pull: :right do
         - if current_user
-          = menu_item 'sessions', user_race_sessions_path(current_user)
+          = menu_item 'your sessions', user_race_sessions_path(current_user)
           = drop_down 'account' do
             = menu_item 'account info', user_path(current_user)
             = menu_item 'settings', edit_user_path(current_user)
-          = menu_item image_tag('logout_small.png'), destroy_user_session_path, method: :delete
+          = menu_item image_tag('logout_small.png'), destroy_user_session_path, method: :delete, style: 'height:0px'
         - else
           = menu_item image_tag('http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_small.png'), user_omniauth_authorize_path(:steam)
     = bootstrap_flash
