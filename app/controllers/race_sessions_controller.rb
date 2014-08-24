@@ -44,9 +44,10 @@ class RaceSessionsController < ApplicationController
       respond_to do |format|
         session = @user.race_sessions.build(race_session_params)
         session.started_at = Time.now
-        session.track = Track.where(img_name: params[:track][:track]).first
+        track = Track.where(img_name: params[:track][:track]).first
+        session.track = track
 
-        if session.save
+        if track && session.save
           format.json { render json: session, status: :created }
         else
           format.json { render json: session }
